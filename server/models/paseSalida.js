@@ -17,6 +17,13 @@ let salidaSchema = new schema({
     dateFecha: {
         type: Date,
         required: true
+    },
+    timeSalida: {
+        type: String
+    },
+    timeRegreso: {
+        type: String
     }
+
 
 })
