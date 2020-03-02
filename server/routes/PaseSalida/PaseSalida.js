@@ -10,7 +10,8 @@ app.post('/registrar', (req, res) => {
         dteHoraSalida: body.dteHoraSalida,
         dteHoraRegreso: body.dteHoraRegreso,
         strMotivo: body.strMotivo,
-        ajsnTraslado: body.ajsnTraslado
+        strRegreso: body.strRegreso
+
     });
 
     paseSalida.save((err, salidaDB) => {

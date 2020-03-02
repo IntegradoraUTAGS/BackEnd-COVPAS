@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
+const Destinos = require('../models/Destinos');
 let schema = mongoose.Schema;
 
 let salidaSchema = new schema({
@@ -14,14 +15,18 @@ let salidaSchema = new schema({
         type: String,
         required: true
     },
-    ajsnTraslado: [{
-        "de": String,
-        "a": String
-    }],
+    ajsnTraslado: [
+        Destinos.schema
+    ],
     strStatus: {
         type: String,
         default: "En Proceso"
+    },
+    strRegreso: {
+        type: Boolean,
+        required: [true, 'es requerido']
     }
+
 
 })
 
