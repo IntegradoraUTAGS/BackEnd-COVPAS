@@ -1,29 +1,36 @@
 const mongoose = require('mongoose');
-let schema = mongoose.Schema;
+const uniquevalidator = require('mongoose-unique-validator');
 
-let salidaSchema = new schema({
-    dteHoraSalida: {
-        type: Date,
-        required: true
+let Schema = mongoose.Schema;
+
+let PaseSchema = new Schema({
+
+    strMotivo:{
+        type:String,
+        required:[true,'Favor ingrese el motivo del pase de salida'],
+        default:false
     },
-    dteHoraRegreso: {
-        type: Date
+    idEstatus:{
+        type:Boolean,
+        required:[true,'Favor de ingresar el status']
     },
-    strMotivo: {
-        type: String,
-        required: true
+    idPersona:{
+        type:String,
+        required:[true,'Ingrese el nombre']
     },
-    ajsnTraslado: [{
-        "de": String,
-        "a": String
-    }],
-    strStatus: {
-        type: String,
-        default: "En Proceso"
+    idVehiculo:{
+        type:String,
+        required:false
+    },
+    numUidad:{
+        type:Number,
+        required: false
     }
 
- 
+})
 
+PaseSchema.plugin(uniquevalidator, {
+    message: '{PATH} Debe ser unico y diferente'
 });
 
-module.exports = mongoose.model('paseSalida', salidaSchema)
+module.exports = mongoose.model('Pase', PaseSchema);
