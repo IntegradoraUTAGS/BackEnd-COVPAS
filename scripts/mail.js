@@ -1,38 +1,42 @@
-"use strict";
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let testAccount = await nodemailer.createTestAccount();
-
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
+sendMail = (name,noEmpleado,salida,regreso,destino) =>{
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'COVPAS2020@gmail.com',
+            pass: 'UnPMtWy46uVbSDH',
+        }
+    });
+    
+    let mailOptions = {
+        from: 'COVPAS2020@gmail.com',
+        to: 'alex13pks@gmail.com, nataacero1@gmail.com',
+        subject: 'Testing nodemailer',
+        html: `<h1>SOLICITUD DE PASE DE SALIDA</h1><strong>${name}</strong>
+         <strong>${noEmpleado}</strong> está solicitando un pase de salida <br>Con destino a 
+         <strong>${destino}</strong> sale 
+         <strong>${salida}</strong> y regresa
+          <strong>${regreso}</strong><br>
+          <a href="google.com">
+          <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
+          </a> <a href="google.com?">
+          <button style="font-size: 20pt;min-width: 200px;max-width: 500px; min-height: 100px;max-height: 300px;background-color: rgba(194, 81, 81, 0.76);margin-top: 50px;margin-left: 50px;">DENEGAR</button>
+          
+          </a>` //html body
+    
     }
-  });
+     transporter.sendMail(mailOptions, function(err,data) {
+        if(err) {
+            console.log('ERROR', err);
+        } else {
+            console.log('Email SENT');
+        }
+    });
+};
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: 'Test', // sender address
-    to: "alex13pks@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Roberto esta solicitando un pase de salida ¿Que deseas hacer?", // plain text body
-    html: '<b>Hello world?</b><br><a href="google.com"><button style="background-color:green; height: 500px">Enviado desde nodemailer</button></a>' // html body
-  });
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
+sendMail("Alex","181513","7:38pm","9:35pm","utags");
 
-main().catch(console.error);
+module.exports = sendMail;

@@ -5,25 +5,25 @@ let Schema = mongoose.Schema;
 
 let PaseSchema = new Schema({
 
-    strMotivo:{
-        type:String,
-        required:[true,'Favor ingrese el motivo del pase de salida'],
-        default:false
+    strMotivo: {
+        type: String,
+        required: [true, 'Favor ingrese el motivo del pase de salida'],
+        default: false
     },
-    idEstatus:{
-        type:Boolean,
-        required:[true,'Favor de ingresar el status']
+    idEstatus: {
+        type: Boolean,
+        required: [true, 'Favor de ingresar el status']
     },
-    idPersona:{
-        type:String,
-        required:[true,'Ingrese el nombre']
+    idPersona: {
+        type: String,
+        required: [true, 'Ingrese el nombre']
     },
-    idVehiculo:{
-        type:String,
-        required:false
+    idVehiculo: {
+        type: String,
+        required: false
     },
-    numUidad:{
-        type:Number,
+    numUidad: {
+        type: Number,
         required: false
     }
 

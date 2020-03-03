@@ -21,7 +21,7 @@ app.get('/paseSalida',(req, res)=>{
     });
 });
 
-app.post('/paseSalida',(req,res)=>{
+app.post('/solicitar',(req,res)=>{
 
     let body = req.body;
     let pase = new Pase({
