@@ -1,47 +1,45 @@
-/* jshint esversion: 8 */
-// Importaciones
-require('colors');
-require('./config/config');
-
-// Declaraciones
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const bodyparser = require('body-parser');
+require('./config/config');
+const app = express();
+
 
 // Habilita CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    res.setHeader(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-    );
-    next();
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader(
+'Access-Control-Allow-Headers',
+'Origin, X-Requested-With, Content-Type, Accept, Authorization, token'
+);
+res.setHeader(
+'Access-Control-Allow-Methods',
+'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+);
+next();
 });
 
-// Requerir las APIS
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use('/api', require('./routes/index'));
+//Parse application/x-www-form-urlencoded
+app.use(bodyparser.urlencoded({ extended: false }));
 
-// Conexión a la base de datos
-mongoose.connect(process.env.URLDB, {
+// Parse formato a application/json
+app.use(bodyparser.json());
+
+// Importa las rutas del archivo index
+app.use(require('./routes/index'));
+
+//conexion a la base de datos
+mongoose.connect('mongodb://localhost:27017/PaseSalida', {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
-}).then((resp) => {
-    console.log('[MONGODB]'.yellow, 'Se ha conectado a la base de datos exitosamente.');
+},
+    (err, resp) => {
+        if (err) throw err;
 
-}).catch((err) => {
-    console.log('[MONGODB]'.red, 'Error al conectar la base de datos');
-});
+        console.log('Base de datos ONLINE');
+    });
 
-// Levantamiento del servidor
+// Puerto de escucha de la app
 app.listen(process.env.PORT, () => {
-    console.log('[SERVER]'.yellow, 'Escuchando puerto:', process.env.PORT);
+    console.log('Escuchando por el puerto', process.env.PORT);
 });

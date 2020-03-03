@@ -10,10 +10,23 @@ let salidaSchema = new schema({
     },
     dteHoraRegreso: {
         type: Date
+      
+let Schema = mongoose.Schema;
+
+let PaseSchema = new Schema({
+
+    strMotivo:{
+        type:String,
+        required:[true,'Favor ingrese el motivo del pase de salida'],
+        default:false
     },
-    strMotivo: {
-        type: String,
-        required: true
+    idEstatus:{
+        type:Boolean,
+        required:[true,'Favor de ingresar el status']
+    },
+    idPersona:{
+        type:String,
+        required:[true,'Ingrese el nombre']
     },
     ajsnTraslado: [
         Destinos.schema
@@ -30,8 +43,8 @@ let salidaSchema = new schema({
 
 })
 
-salidaSchema.plugin(uniquevalidator, {
-    message: '{PATH} Debe ser Unico...'
+PaseSchema.plugin(uniquevalidator, {
+    message: '{PATH} Debe ser unico y diferente'
 });
 
-module.exports = mongoose.model('PaseSalida', salidaSchema);
+module.exports = mongoose.model('Pase', PaseSchema);
