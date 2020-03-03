@@ -10,11 +10,7 @@ let salidaSchema = new schema({
     },
     dteHoraRegreso: {
         type: Date
-      
-let Schema = mongoose.Schema;
-
-let PaseSchema = new Schema({
-
+    },
     strMotivo: {
         type: String,
         required: [true, 'Favor ingrese el motivo del pase de salida'],
