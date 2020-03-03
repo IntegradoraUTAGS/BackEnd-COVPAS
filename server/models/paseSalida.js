@@ -28,15 +28,6 @@ let PaseSchema = new Schema({
         type: String,
         required: [true, 'Ingrese el nombre']
     },
-<<<<<<< HEAD
-    idVehiculo: {
-        type: String,
-        required: false
-    },
-    numUidad: {
-        type: Number,
-        required: false
-=======
     ajsnTraslado: [
         Destinos.schema
     ],
@@ -47,7 +38,6 @@ let PaseSchema = new Schema({
     strRegreso: {
         type: Boolean,
         required: [true, 'es requerido']
->>>>>>> d06aba9e85fd9468c78278acbc6733d629c17c33
     }
 
 

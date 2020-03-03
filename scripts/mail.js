@@ -35,8 +35,4 @@ sendMail = (name,noEmpleado,salida,regreso,destino) =>{
     });
 };
 
-
-
-sendMail("Alex","181513","7:38pm","9:35pm","utags");
-
 module.exports = sendMail;
