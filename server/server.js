@@ -1,6 +1,6 @@
 /* jshint esversion: 8 */
 // Importaciones
-require('colors');
+//require('colors');
 require('./config/config');
 
 // Declaraciones
@@ -26,7 +26,8 @@ app.use((req, res, next) => {
 // Requerir las APIS
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/api', require('./routes/index'));
+//app.use('/api', require('./routes/index'));
+app.use(require('./routes/index/index'));
 
 // Conexión a la base de datos
 mongoose.connect(process.env.URLDB, {

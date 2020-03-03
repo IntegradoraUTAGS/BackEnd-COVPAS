@@ -1,7 +1,9 @@
 /* jshint esversion: 8 */
 const express = require('express');
+const bcrypt = require('bcrypt');
 const app = express();
 const Usuario = require('../../models/usuario');
+const Persona = require('../../models/persona');
 
 app.get('/obtener', (req, res) => {
 
@@ -47,32 +49,31 @@ app.get('/obtener/:idUsuario', (req, res) => {
 });
 
 app.post('/registrar', (req, res) => {
+    let body = req.body;
 
-    const usuario = new Usuario({
-        strNombre: req.body.strNombre,
-        strApellidoPat: req.body.strApellidoPat,
-        strApellidoMat: req.body.strApellidoMat,
-        strCorreo: req.body.strCorreo,
-        strDireccion: req.body.strDireccion,
-        strColonia: req.body.strColonia
+    let persona = new Persona({
+        numNoEmpleado: body.numEmpleado,
+        strNombre: body.nombre,
+        strEmail: body.correoElectronico,
+        strContraseña: bcrypt.hashSync(body.contraseña,10),
+        idTipoEmpleado: body.idEmpleado,
+        idDireccion: body.idDireccion
+
     });
-
-    new Usuario(usuario).save().then((resp) => {
+    persona.save((err, usrDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
         return res.status(200).json({
-            msg: 'El usuario se ha registrado exitosamente.',
-            cont: resp
+            ok: true,
+            usrDB
         });
-    }).catch((err) => {
-        return res.status(400).json({
-            msg: 'Oups! Ocurrió un error al registrar el usuario.',
-            cont: err
-        });
-
     });
-
-
-
 });
+
 
 app.put('/actualizar/:idUsuario', (req, res) => {
 

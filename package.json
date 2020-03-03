@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Repositorio del BackEnd del proyecto de Control de vacaciones, pases de salida personales y vehículares.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/peckas13/BACKEND.git"
   },
-  "author": "",
+  "author": "ricardo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/peckas13/BACKEND/issues"
   },
   "homepage": "https://github.com/peckas13/BACKEND#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "express": "^4.17.1",
