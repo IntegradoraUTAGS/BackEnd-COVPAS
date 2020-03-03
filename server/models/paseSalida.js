@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
+const Destinos = require('../models/Destinos');
+let schema = mongoose.Schema;
 
+let salidaSchema = new schema({
+    dteHoraSalida: {
+        type: Date,
+        required: true
+    },
+    dteHoraRegreso: {
+        type: Date
+      
 let Schema = mongoose.Schema;
 
 let PaseSchema = new Schema({
@@ -18,6 +28,7 @@ let PaseSchema = new Schema({
         type: String,
         required: [true, 'Ingrese el nombre']
     },
+<<<<<<< HEAD
     idVehiculo: {
         type: String,
         required: false
@@ -25,7 +36,20 @@ let PaseSchema = new Schema({
     numUidad: {
         type: Number,
         required: false
+=======
+    ajsnTraslado: [
+        Destinos.schema
+    ],
+    strStatus: {
+        type: String,
+        default: "En Proceso"
+    },
+    strRegreso: {
+        type: Boolean,
+        required: [true, 'es requerido']
+>>>>>>> d06aba9e85fd9468c78278acbc6733d629c17c33
     }
+
 
 })
 
