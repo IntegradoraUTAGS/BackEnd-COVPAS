@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/peckas13/BACKEND.git"
   },
-  "author": "ricardo",
+  "author": "UTA",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/peckas13/BACKEND/issues"
@@ -25,6 +25,7 @@
     "mongoose": "^5.9.2",
     "mongoose-unique-validator": "^2.0.3",
     "nodemailer": "^6.4.3",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "underscore": "^1.9.2"
   }
 }
