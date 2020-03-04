@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.use('/usuario', require('./usuario/usuario'));
+app.use('/destinos', require('./Destinos/Destinos'));
+app.use('/registro', require('./registro/registro'));
+app.use('/login', require('./login/login'));
 app.use('/paseSalida', require('./paseSalida/paseSalida'));
 
 

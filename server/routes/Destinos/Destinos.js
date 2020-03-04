@@ -5,7 +5,6 @@ const PaseSalida = require('../../models/paseSalida');
 const app = express();
 
 app.put('/destinos/:idpasesalida', (req, res) => {
-    let id = req.body.id;
     let body = _.pick(req.body, ['De', 'A']);
 
     const destinos = new Destinos({

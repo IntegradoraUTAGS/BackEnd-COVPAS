@@ -29,7 +29,7 @@ app.use(bodyparser.json());
 app.use(require('./routes/index'));
 
 //conexion a la base de datos
-mongoose.connect('mongodb://localhost:27017/PaseSalida', {
+mongoose.connect('mongodb://localhost:27017/COVPAS', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },

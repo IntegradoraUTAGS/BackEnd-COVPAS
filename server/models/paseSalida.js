@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 const Destinos = require('../models/Destinos');
+const Persona = require('../models/persona');
 let schema = mongoose.Schema;
 
-let salidaSchema = new schema({
+let PaseSchema = new schema({
     dteHoraSalida: {
         type: Date,
         required: true
@@ -16,18 +17,15 @@ let salidaSchema = new schema({
         required: [true, 'Favor ingrese el motivo del pase de salida'],
         default: false
     },
-    idEstatus: {
-        type: Boolean,
-        required: [true, 'Favor de ingresar el status']
-    },
     idPersona: {
-        type: String,
+        type: schema.Types.ObjectId,
+        ref: 'Persona',
         required: [true, 'Ingrese el nombre']
     },
-    ajsnTraslado: [
-        Destinos.schema
-    ],
-    strStatus: {
+    ajsnTraslado: [{
+        Destinos: Destinos.schema
+    }],
+    strEtatus: {
         type: String,
         default: "En Proceso"
     },

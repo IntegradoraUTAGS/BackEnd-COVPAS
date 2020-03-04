@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-sendMail = (name,noEmpleado,salida,regreso,destino) =>{
+ const authorizerMail = (mail,name,noEmpleado,salida,regreso,destino) =>{
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -11,7 +11,7 @@ sendMail = (name,noEmpleado,salida,regreso,destino) =>{
     
     let mailOptions = {
         from: 'COVPAS2020@gmail.com',
-        to: 'alex13pks@gmail.com, nataacero1@gmail.com',
+        to: `alex13pks@gmail.com, nataacero1@gmail.com, ${mail}`,
         subject: 'Testing nodemailer',
         html: `<h1>SOLICITUD DE PASE DE SALIDA</h1><strong>${name}</strong>
          <strong>${noEmpleado}</strong> está solicitando un pase de salida <br>Con destino a 
@@ -35,4 +35,4 @@ sendMail = (name,noEmpleado,salida,regreso,destino) =>{
     });
 };
 
-module.exports = sendMail;
+exports.authorizerMail = authorizerMail;
