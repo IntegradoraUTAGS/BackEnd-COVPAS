@@ -29,6 +29,10 @@ let personaSchema = new Schema({
     idDireccion: {
         type: Number,
         required:[true, 'Por favor ingresa el id de la direccion']
+    },
+    active: {
+        type: Boolean,
+        default: true
     }
 });
 

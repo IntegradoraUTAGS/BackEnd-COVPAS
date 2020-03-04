@@ -26,7 +26,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 // Importa las rutas del archivo index
-app.use(require('./routes/index'));
+app.use(require('./routes/index/index'));
 
 //conexion a la base de datos
 mongoose.connect('mongodb://localhost:27017/COVPAS', {
