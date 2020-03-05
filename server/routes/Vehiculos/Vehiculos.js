@@ -3,7 +3,7 @@ const _ = require('underscore');
 const Vehiculos = require('../../models/Vehiculos');
 const app = express();
 
-app.get('/vehiculos', (req, res) => {
+app.get('/vehiculosget', (req, res) => {
     Vehiculos.find()
         .exec((err, vehiculos) => {
             if (err) {
@@ -21,14 +21,14 @@ app.get('/vehiculos', (req, res) => {
         });
 });
 
-app.post('/registro', (req, res) => {
+app.post('/vehiculoregis', (req, res) => {
     let body = req.body;
 
     let vehiculos = new Vehiculos({
         numUnidad: body.numUnidad,
         strModelo: body.strModelo,
         strNombre: body.strNombre,
-        strObservaciones: bosy.strObservaciones,
+        strObservaciones: body.strObservaciones,
         strPlacas: body.strPlacas
     });
 

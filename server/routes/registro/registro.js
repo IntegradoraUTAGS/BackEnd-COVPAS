@@ -4,17 +4,18 @@ const Persona = require('../../models/persona');
 const bcrypt = require('bcrypt');
 const app = express();
 
-app.post('/registro', (req,res) => {
+app.post('/registro', (req, res) => {
     let body = req.body;
     const usuario = new Persona({
         numNoEmpleado: body.numNoEmpleado,
         strNombre: body.strNombre,
         strEmail: body.strEmail,
         strContraseña: bcrypt.hashSync(body.strContraseña, 10),
-        strTipoEmpleado: body.strTipoEmpleado
+        idDireccion: body.idDireccion,
+        idTipoEmpleado: body.strTipoEmpleado
     })
-    Persona.findOne({strEmail: body.strEmail}).then((persona)=> {
-        if(persona){
+    Persona.findOne({ strEmail: body.strEmail }).then((persona) => {
+        if (persona) {
             return res.status(404).json({
                 ok: false,
                 msg: 'Ese correo ya existe'
