@@ -15,20 +15,18 @@ let personaSchema = new Schema({
     },
     strEmail: {
         type: String,
-        unique: true,
         required: [true, 'Por favor ingresa un correo electronico']
     },
     strContraseña: {
         type: String,
         required:[true, 'Por favor ingresa una contraseña']
     },
-    idTipoEmpleado: {
-        type: Number,
-        required: [true, 'Por favor ingresa el id del tipo de empleado']
+    strTipoEmpleado: {
+        type: String,
+        required: [true, 'Por favor ingresa el tipo de empleado']
     },
     idDireccion: {
-        type: Number,
-        required:[true, 'Por favor ingresa el id de la direccion']
+        type: Number
     },
     active: {
         type: Boolean,

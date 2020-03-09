@@ -7,7 +7,7 @@ const Persona = require('../../models/persona');
 
 app.post('/login', (req, res) => {
     let body = req.body;
-    Persona.findOne({ numNoEmpleado: body.numEmpleado}, (err, usuarioDB) => {
+    Persona.findOne({ numNoEmpleado: body.numNoEmpleado}, (err, usuarioDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -15,8 +15,6 @@ app.post('/login', (req, res) => {
             })
         }
         if (!usuarioDB) {
-
-
             return res.status(400).json({
                 ok: false,
                 err: {
@@ -24,7 +22,7 @@ app.post('/login', (req, res) => {
                 }
             })
         }
-        if (!bcrypt.compareSync(body.contraseña, usuarioDB.strContraseña)) {
+        if (!bcrypt.compareSync(body.strContraseña, usuarioDB.strContraseña)) {
             return res.status(400).json({
                 ok: false,
                 err: {

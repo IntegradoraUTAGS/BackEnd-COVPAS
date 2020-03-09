@@ -3,7 +3,7 @@ const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
 const sendMail = require('../../../scripts/mail');
 const app = express();
-app.get('/:id',(req, res)=>{
+app.get('/paseSalida/:id',(req, res)=>{
     let id = req.params.id;
     Salidas.find({_id:id})
     .exec((err, pase)=>{
@@ -20,7 +20,7 @@ app.get('/:id',(req, res)=>{
        });
     });
 });
-app.put('/:id', (req, res) => {
+app.put('/paseSalida/:id', (req, res) => {
     let id =req.params.id;
     let body = _.pick(req.body, 'strEstatus');
 
@@ -38,7 +38,7 @@ app.put('/:id', (req, res) => {
     });
 
 });
-app.post('/:id', (req, res) => {
+app.post('/paseSalida/:id', (req, res) => {
     let body = req.body;
     let email = req.body.email;
     let salida = body.dteHoraSalida;
@@ -54,12 +54,12 @@ app.post('/:id', (req, res) => {
         idPersona: req.params.id
     });
     
-    new Salidas(paseSalida).save().then((resp) => {
+    new Salidas(paseSalida).save().then((pase) => {
         sendMail.authorizerMail(email, nombre, noEmpleado, salida, regreso, destino);
         return res.status(200).json({
             ok: true,
             msg: 'Enviada solicitud de pase de salida esperando respuesta...',
-            cont: resp
+            cont: pase
         });
     }).catch((err) => {
         return res.status(400).json({

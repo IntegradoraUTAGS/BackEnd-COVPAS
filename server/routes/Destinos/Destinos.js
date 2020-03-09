@@ -12,7 +12,7 @@ app.put('/destinos/:idpasesalida', (req, res) => {
         a: body.A
     })
 
-    PaseSalida.findByIdAndUpdate(req.params.idpasesalida, { $push: { ajsnTraslado: destinos } }, (err, paseDB) => {
+    PaseSalida.findOneAndUpdate(req.params.idpasesalida, { $push: { ajsnTraslado: destinos } }, (err, paseDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,

@@ -25,7 +25,7 @@ let PaseSchema = new schema({
     ajsnTraslado: [{
         Destinos: Destinos.schema
     }],
-    strEtatus: {
+    strEstatus: {
         type: String,
         default: "En Proceso"
     },
