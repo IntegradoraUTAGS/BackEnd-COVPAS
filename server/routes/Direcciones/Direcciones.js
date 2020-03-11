@@ -20,3 +20,5 @@ app.post('/registrar',(res,req) =>{
         });
     });
 });
+
+module.exports = app;
