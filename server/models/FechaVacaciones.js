@@ -1,3 +1,4 @@
+/* jshint esversion: 6*/
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 
@@ -6,6 +7,6 @@ let fecha = new Schema(
     {
         dteFecha: {type: Date}
     }
-)
+);
 
 module.exports = mongoose.model('Fecha', fecha);

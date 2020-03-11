@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 const Persona = require('./persona');
@@ -26,6 +27,6 @@ let solicitudVacaciones=new Schema({
         type: String,
         default: 'En Progreso'
     }
-})
+});
 
 module.exports = mongoose.model('controlVacaciones', solicitudVacaciones);
