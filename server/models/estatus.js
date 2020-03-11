@@ -1,6 +1,7 @@
+/* jshint esversion: 6 */
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-const Persona;
+const Persona = require('../models/persona');
 
 let estatus = new Schema({
         strNombre: {

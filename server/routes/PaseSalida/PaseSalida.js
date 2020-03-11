@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
@@ -39,13 +40,6 @@ app.put('/paseSalida/:id', (req, res) => {
 
 });
 app.post('/paseSalida/:id', (req, res) => {
-    let body = req.body;
-    let email = req.body.email;
-    let salida = body.dteHoraSalida;
-    let regreso = body.dteHoraRegreso;
-    let destino = 'prueba';
-    let nombre = 'nombre prueba';
-    let noEmpleado = '12345';
     let paseSalida = new Salidas({
         dteHoraSalida: body.dteHoraSalida,
         dteHoraRegreso: body.dteHoraRegreso,
@@ -55,7 +49,7 @@ app.post('/paseSalida/:id', (req, res) => {
     });
     
     new Salidas(paseSalida).save().then((pase) => {
-        sendMail.authorizerMail(email, nombre, noEmpleado, salida, regreso, destino);
+        //sendMail.authorizerMail(email, nombre, noEmpleado, salida, regreso, destino);
         return res.status(200).json({
             ok: true,
             msg: 'Enviada solicitud de pase de salida esperando respuesta...',

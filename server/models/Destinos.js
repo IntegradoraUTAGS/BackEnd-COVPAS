@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
@@ -11,7 +12,7 @@ let destinosSchema = new Schema({
         type: String,
         required: [true, 'es requerido']
     }
-})
+});
 
 destinosSchema.plugin(uniquevalidator, {
     message: '{PATH} Debe ser Unico...'

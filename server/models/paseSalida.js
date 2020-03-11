@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 const Destinos = require('../models/Destinos');
@@ -22,9 +23,9 @@ let PaseSchema = new schema({
         ref: 'Persona',
         required: [true, 'Ingrese el nombre']
     },
-    ajsnTraslado: [{
-        Destinos: Destinos.schema
-    }],
+    ajsnTraslado: [
+        Destinos.schema
+    ],
     strEstatus: {
         type: String,
         default: "En Proceso"
@@ -35,7 +36,7 @@ let PaseSchema = new schema({
     }
 
 
-})
+});
 
 PaseSchema.plugin(uniquevalidator, {
     message: '{PATH} Debe ser unico y diferente'

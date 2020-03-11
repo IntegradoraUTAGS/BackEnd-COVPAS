@@ -1,7 +1,8 @@
+/* jshint esversion: 6 */
 const express = require('express');
 const _ = require('underscore');
-const Destinos = require('../../models/Destinos');
-const PaseSalida = require('../../models/paseSalida');
+const Destinos = require('../../../models/Destinos');
+const PaseSalida = require('../../../models/paseSalida');
 const app = express();
 
 app.put('/destinos/:idpasesalida', (req, res) => {
@@ -10,7 +11,7 @@ app.put('/destinos/:idpasesalida', (req, res) => {
     const destinos = new Destinos({
         de: body.De,
         a: body.A
-    })
+    });
 
     PaseSalida.findOneAndUpdate(req.params.idpasesalida, { $push: { ajsnTraslado: destinos } }, (err, paseDB) => {
         if (err) {
@@ -24,7 +25,7 @@ app.put('/destinos/:idpasesalida', (req, res) => {
             ok: true,
             paseDB
         });
-    })
+    });
 
 });
 

@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
@@ -29,7 +30,7 @@ app.use(bodyparser.json());
 app.use(require('./routes/index/index'));
 
 //conexion a la base de datos
-mongoose.connect('mongodb://localhost:27017/COVPAS', {
+mongoose.connect(process.env.URLDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },

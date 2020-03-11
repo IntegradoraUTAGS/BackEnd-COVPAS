@@ -1,3 +1,4 @@
+/* jshint esversion: 6*/
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 
@@ -17,7 +18,7 @@ let personaSchema = new Schema({
         type: String,
         required: [true, 'Por favor ingresa un correo electronico']
     },
-    strContraseña: {
+    strPassword: {
         type: String,
         required:[true, 'Por favor ingresa una contraseña']
     },
