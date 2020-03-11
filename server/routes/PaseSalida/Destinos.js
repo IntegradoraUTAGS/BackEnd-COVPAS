@@ -1,11 +1,11 @@
 /* jshint esversion: 6 */
 const express = require('express');
 const _ = require('underscore');
-const Destinos = require('../../../models/Destinos');
-const PaseSalida = require('../../../models/paseSalida');
+const Destinos = require('../../models/Destinos');
+const PaseSalida = require('../../models/paseSalida');
 const app = express();
 
-app.put('/destinos/:idpasesalida', (req, res) => {
+app.put('/actualizar/:idpasesalida', (req, res) => {
     let body = _.pick(req.body, ['De', 'A']);
 
     const destinos = new Destinos({

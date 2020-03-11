@@ -4,7 +4,7 @@ const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
 const sendMail = require('../../../scripts/mail');
 const app = express();
-app.get('/paseSalida/:id',(req, res)=>{
+app.get('/obtener/:id',(req, res)=>{
     let id = req.params.id;
     Salidas.find({_id:id})
     .exec((err, pase)=>{
@@ -21,7 +21,7 @@ app.get('/paseSalida/:id',(req, res)=>{
        });
     });
 });
-app.put('/paseSalida/:id', (req, res) => {
+app.put('/actualizar/estatus/:id', (req, res) => {
     let id =req.params.id;
     let body = _.pick(req.body, 'strEstatus');
 
@@ -39,7 +39,7 @@ app.put('/paseSalida/:id', (req, res) => {
     });
 
 });
-app.post('/paseSalida/:id', (req, res) => {
+app.post('/registrar/:id', (req, res) => {
     let paseSalida = new Salidas({
         dteHoraSalida: body.dteHoraSalida,
         dteHoraRegreso: body.dteHoraRegreso,

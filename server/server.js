@@ -27,12 +27,13 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 // Importa las rutas del archivo index
-app.use(require('./routes/index/index'));
+app.use(require('./routes/index'));
 
 //conexion a la base de datos
 mongoose.connect(process.env.URLDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true
 },
     (err, resp) => {
         if (err) throw err;
