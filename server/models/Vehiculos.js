@@ -3,30 +3,32 @@ const uniquevalidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
 
 let vehiculosSchema = new Schema({
-    numUnidad: {
-        type: Number,
-        required: [true, 'Inserte Numero de unidad'],
-        unique: true
-    },
-    strModelo: {
+    strUnidad: {
         type: String,
-        required: [true, 'Inserte Modelo']
+        required: [true, 'Inserte Nombre de la unidad']
     },
-    strNombre: {
+    strMarca: {
         type: String,
         required: [true, 'Inserte nombre del vehiculo']
     },
-    blnEstatus: {
-        type: Boolean,
-        default: true
-    },
-    strObservaciones: {
+    strPlaca: {
         type: String,
-
+        required: [true, 'Inserte el numero de Placa'],
+        unique: true
     },
-    strPlacas: {
+    numModelo: {
+        type: Number,
+        required: [true, 'Inserte el Modelo del automovil']
+    },
+    strNodeMotor: {
         type: String,
-        required: [true, 'Inserte las placas...']
+        required: [true, 'Inserte el numero de Motor del vehiculo'],
+        unique: true
+    },
+    strNIV: {
+        type: String,
+        required: [true, 'Inserte N.I.V'],
+        unique: true
     }
 
 });

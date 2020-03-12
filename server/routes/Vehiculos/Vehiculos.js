@@ -25,11 +25,12 @@ app.post('/vehiculoregis', (req, res) => {
     let body = req.body;
 
     let vehiculos = new Vehiculos({
-        numUnidad: body.numUnidad,
-        strModelo: body.strModelo,
-        strNombre: body.strNombre,
-        strObservaciones: body.strObservaciones,
-        strPlacas: body.strPlacas
+        strUnidad: body.strUnidad,
+        strMarca: body.strMarca,
+        strPlaca: body.strPlaca,
+        numModelo: body.numModelo,
+        strNodeMotor: body.strNodeMotor,
+        strNIV: body.strNIV
     });
 
     vehiculos.save((err, vhlDB) => {
