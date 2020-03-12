@@ -32,7 +32,11 @@ let personaSchema = new Schema({
     active: {
         type: Boolean,
         default: true
-    }
+    },
+    numDiasDisponibles: {
+        type: Number,
+        default: 0
+    },
 });
 
 personaSchema.plugin(uniquevalidator, {

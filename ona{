@@ -1,0 +1,207 @@
+[33mcommit 9a268282a14b53a0a6f0a9ff8bab7ac1b77d969b[m[33m ([m[1;36mHEAD -> [m[1;32mDillan_Palacios[m[33m)[m
+Author: Dillan-Palacios <memordio.gdpm@gmail.com>
+Date:   Wed Mar 11 16:08:27 2020 -0600
+
+    modificado modelado de controlVaciones
+
+[33mcommit dae65900bd8536f299a410ca7c62febcf449e030[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:43:35 2020 -0600
+
+    Modificado el archivo de ruta direcciones
+
+[33mcommit 85d2220a744016e177ca218fef22371bca1629d5[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:38:35 2020 -0600
+
+    Añadida la ruta de direcciones
+
+[33mcommit 410688cc7a6053c7c12f54061d3c166e967d9a64[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:21:16 2020 -0600
+
+    Modificado jshint version
+
+[33mcommit 7ab0bf1e102c60910feebe52ba31264339aa2d29[m
+Merge: b7f6551 3334cb8
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:18:37 2020 -0600
+
+    Merge remote-tracking branch 'origin/Dillan_Palacios'
+
+[33mcommit b7f655101ae4e5d96f27bfb8a54e86e1dfd01b19[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:13:03 2020 -0600
+
+    Añadido el mail2 script para enviar correo de verificacion
+
+[33mcommit efde19aec5d28d536c1e752166571c1414d10a0d[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 11 14:11:13 2020 -0600
+
+    Commit para probar login
+
+[33mcommit e9a6f97c43d96fd635f1c7890b19918083b5e590[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Mon Mar 9 14:41:32 2020 -0600
+
+    Commit para revision
+
+[33mcommit 3334cb83a60dbe1a75456061cacc8a6f79179a4d[m
+Author: Dillan-Palacios <memordio.gdpm@gmail.com>
+Date:   Thu Mar 5 16:04:37 2020 -0600
+
+    Modelos Vacaciones
+
+[33mcommit 2a478acb40628dafd2bb4f0d65ce984bd82d5028[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Wed Mar 4 14:53:46 2020 -0600
+
+    Arreglado el doble index
+
+[33mcommit 6ac8d3cf1199f5ea59eeadafcfe6861ab4860019[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Mar 3 23:32:34 2020 -0600
+
+    Configurada la API de pase de salida
+    
+    Falta enviar correos desde los parametros de la ruta
+
+[33mcommit 04f2a85206178d462ff9f27b7cb4b0a2985ffe99[m
+Merge: cdce9b6 dbf40c6
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Mar 3 19:43:17 2020 -0600
+
+    Merge branch 'master' into Ricardo
+
+[33mcommit dbf40c6748f4525e544cff1272adadfc911e6009[m
+Merge: 1ba28f2 c9d57a1
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Tue Mar 3 19:25:54 2020 -0600
+
+    Merge pull request #6 from IntegradoraUTAGS/axelbarrera-patch-1
+    
+    Update paseSalida.js
+
+[33mcommit c9d57a1135f8aaa8b25ffae9ac389e29f30ab3aa[m
+Author: Barrera Lopez Axel Manuel <55700192+axelbarrera@users.noreply.github.com>
+Date:   Tue Mar 3 15:24:46 2020 -0600
+
+    Update paseSalida.js
+
+[33mcommit cdce9b614b0be97d89ac3e302de908cbccb833ea[m
+Author: Ritchie03 <lmorrizmtz@gmail.com>
+Date:   Tue Mar 3 15:17:04 2020 -0600
+
+    Creacion API de login, ruta para el login y registro de usuarios y creacion del modelo de persona
+
+[33mcommit 1ba28f283ecef5ec7ceaca233b44afe652ca95bc[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Mar 3 15:01:08 2020 -0600
+
+    Modificado el script de mail
+
+[33mcommit 4a4467ae31a65335d3c67bcfbe89704237d6ad93[m
+Merge: e628541 d06aba9
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Mar 3 14:55:35 2020 -0600
+
+    Merge Barrera
+
+[33mcommit d06aba9e85fd9468c78278acbc6733d629c17c33[m
+Merge: 767aee3 a8acf05
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Tue Mar 3 14:52:49 2020 -0600
+
+    Merge pull request #4 from IntegradoraUTAGS/Barrera
+    
+    Barrera
+
+[33mcommit a8acf05c93f21a3c854d34379b854733abcc8c77[m
+Merge: 0ba53ee 767aee3
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Tue Mar 3 14:47:37 2020 -0600
+
+    Merge branch 'master' into Barrera
+
+[33mcommit e6285417ed5353d2fba06c7d764b641a0c10b8fa[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Mar 3 14:37:22 2020 -0600
+
+    Modificado el script para enviar el mail
+
+[33mcommit 0ba53ee649a02fc51ce7aad0e92c9edce96ee71d[m
+Author: Barrera Lopez Axel Manuel <55700192+axelbarrera@users.noreply.github.com>
+Date:   Mon Mar 2 14:45:17 2020 -0600
+
+    Integracion de Funcion para ajsnTraslado y Poner campo de stRegresoblean
+
+[33mcommit 767aee3fc2ad79c7732c5c531af724dccca92aa6[m
+Merge: 48fe5d2 b055f50
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Mon Mar 2 13:29:41 2020 -0600
+
+    Merge pull request #3 from IntegradoraUTAGS/david
+    
+    Terminada api de sprint 2
+
+[33mcommit cb9a72e5daa54478ff8743fab2ab24c9c17272fa[m
+Author: Barrera Lopez Axel Manuel <55700192+axelbarrera@users.noreply.github.com>
+Date:   Fri Feb 28 16:22:36 2020 -0600
+
+    Se realizo el POST para registrar pases de salida modelo de json!
+
+[33mcommit b055f5074c00d02d37c9ec22c4593a236197a7a2[m
+Author: Alumno Administración <aadmon@utags.edu.mx>
+Date:   Fri Feb 28 15:55:37 2020 -0600
+
+    Terminada api de sprint 2
+
+[33mcommit 48fe5d224063c83a7fce30feacef92f1276e999e[m
+Merge: 467a781 8834baf
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Fri Feb 28 15:38:28 2020 -0600
+
+    Merge pull request #2 from IntegradoraUTAGS/peckas12
+    
+    Añadida la funcion de enviar correos
+
+[33mcommit 8834baf1f958a4cecb6b814549478550b44f0e9c[m
+Merge: be53715 467a781
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Fri Feb 28 15:38:08 2020 -0600
+
+    Merge branch 'master' into peckas12
+
+[33mcommit be53715064cbf0fbb0649de72e5d983133b9699f[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Fri Feb 28 15:19:54 2020 -0600
+
+    Añadida la funcion de enviar correos
+
+[33mcommit 467a7811b511318898db7c164716e7c08861cd74[m
+Merge: 089677d d4ba83b
+Author: Alejandro Herrera Merlo <55700700+peckas13@users.noreply.github.com>
+Date:   Fri Feb 28 09:33:28 2020 -0600
+
+    Merge pull request #1 from IntegradoraUTAGS/dillan.palacios
+    
+    Avance del Api pase salida
+
+[33mcommit d4ba83b409d7da1e4122e55e630537396e408069[m
+Author: Dillan-Palacios <memordio.gdpm@gmail.com>
+Date:   Thu Feb 27 16:47:50 2020 -0600
+
+    Avance del Api pase salida
+
+[33mcommit 089677d1d2c607bb3426767722ca130303946620[m
+Author: AlexHM <alex13pks@gmail.com>
+Date:   Tue Feb 25 20:55:25 2020 -0600
+
+    Añadida la base del proyecto
+
+[33mcommit 0bccadacf9e72fafd9c3e354bee2cdd0446bf7ee[m
+Author: luiscasdel64 <61424686+luiscasdel64@users.noreply.github.com>
+Date:   Tue Feb 25 08:18:41 2020 -0600
+
+    Initial commit
