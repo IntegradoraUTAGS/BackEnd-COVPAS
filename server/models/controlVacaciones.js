@@ -21,7 +21,8 @@ let solicitudVacaciones=new Schema({
         ref: 'Persona'
     },
     ajsnFechaSolitada: [{
-        Fecha: Fecha.Schema
+        // Fecha: Fecha.Schema
+        type:Date
     }],
     strEstatus: {
         type: String,
