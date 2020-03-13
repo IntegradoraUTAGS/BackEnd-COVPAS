@@ -11,12 +11,6 @@ const mongooseHidden = require('mongoose-hidden');
 app.post('/login', (req, res) => {
     let body = req.body;
     Persona.findOne({ numNoEmpleado: body.numNoEmpleado}, (err, usuarioDB) => {
-        Persona.plugin(mongooseHidden, {
-            hidden: {
-                _id: false,
-                strPassword: true
-            }
-        });
         if (err) {
             return res.status(400).json({
                 ok: false,

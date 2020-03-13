@@ -12,3 +12,5 @@ let estatus = new Schema({
             ref: 'Persona'
         }
 });
+
+module.exports = mongoose.model('Estatus', estatus);

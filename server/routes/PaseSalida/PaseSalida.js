@@ -23,7 +23,7 @@ app.get('/obtener/:id',(req, res)=>{
 });
 app.put('/actualizar/estatus/:id', (req, res) => {
     let id =req.params.id;
-    let body = _.pick(req.body, 'strEstatus');
+    let body = _.pick(req.body, 'idEstatus');
 
     Salidas.findByIdAndUpdate(id, body,{new:true, runValidators:true , context:'query'},(err, PaseDB)=>{
         if (err) {
@@ -41,10 +41,10 @@ app.put('/actualizar/estatus/:id', (req, res) => {
 });
 app.post('/registrar/:id', (req, res) => {
     let paseSalida = new Salidas({
-        dteHoraSalida: body.dteHoraSalida,
-        dteHoraRegreso: body.dteHoraRegreso,
-        strMotivo: body.strMotivo,
-        strRegreso: body.strRegreso,
+        dteHoraSalida: req.body.dteHoraSalida,
+        dteHoraRegreso: req.body.dteHoraRegreso,
+        strMotivo: req.body.strMotivo,
+        blnRegreso: req.body.blnRegreso,
         idPersona: req.params.id
     });
     

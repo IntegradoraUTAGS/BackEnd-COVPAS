@@ -13,7 +13,7 @@ app.put('/actualizar/:idpasesalida', (req, res) => {
         a: body.A
     });
 
-    PaseSalida.findOneAndUpdate(req.params.idpasesalida, { $push: { ajsnTraslado: destinos } }, (err, paseDB) => {
+    PaseSalida.findOneAndUpdate(req.params.idpasesalida, {useFindAndModify: true},{ $push: { ajsnTraslado: destinos } }, (err, paseDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,

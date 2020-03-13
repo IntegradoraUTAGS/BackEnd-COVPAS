@@ -30,7 +30,7 @@ let PaseSchema = new schema({
         type: String,
         default: "En Proceso"
     },
-    strRegreso: {
+    blnRegreso: {
         type: Boolean,
         required: [true, 'es requerido']
     }
