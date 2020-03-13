@@ -48,12 +48,51 @@ app.post('/vehiculoregis', (req, res) => {
     });
 });
 
-app.put('/', (req, res) => {
+app.put('/vehiculosput/:id', (req, res) => {
+    let id = req.params.id;
+    let body = _.pick(req.body, 'blnEstatus');
+
+    Vehiculos.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, vhlDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            vhlDB
+        });
+    });
 
 });
 
-app.delete('/', (req, res) => {
+app.delete('/vehiculosdelete/:id', (req, res) => {
+    let id = req.params.id;
+     Vehiculos.deleteOne({ _id: id }, (err, resp) => {
+         if (err) {
+             return res.status(400).json({
+                 ok: false,
+                 err
+             });
+         }
+         if (resp.deletedCount === 0) {
+             return res.status(400).json({
+                 ok: false,
+                 err: {
+                     id,
+                     msg: 'Usuario no encontrado'
+                 }
+             });
+         }
+         return res.status(200).json({
+             ok: true,
+             resp
+         });
+     });
+
 
 });
+
 
 module.exports = app;

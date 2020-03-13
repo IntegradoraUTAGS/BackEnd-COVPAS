@@ -29,6 +29,10 @@ let vehiculosSchema = new Schema({
         type: String,
         required: [true, 'Inserte N.I.V'],
         unique: true
+    },
+    blnEstatus:{
+        type: Boolean,
+        default:true
     }
 
 });
