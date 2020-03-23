@@ -40,6 +40,7 @@ app.put('/actualizar/estatus/:id', (req, res) => {
 
 });
 app.post('/registrar/:id', (req, res) => {
+
     let paseSalida = new Salidas({
         dteHoraSalida: req.body.dteHoraSalida,
         dteHoraRegreso: req.body.dteHoraRegreso,
@@ -49,7 +50,7 @@ app.post('/registrar/:id', (req, res) => {
     });
     
     new Salidas(paseSalida).save().then((pase) => {
-        //sendMail.authorizerMail(email, nombre, noEmpleado, salida, regreso, destino);
+        //sendMail.authorizerMail(mail,name,noEmpleado,salida,regreso,destino);
         return res.status(200).json({
             ok: true,
             msg: 'Enviada solicitud de pase de salida esperando respuesta...',
