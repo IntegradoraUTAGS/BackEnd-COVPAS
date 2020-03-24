@@ -4,28 +4,28 @@ const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
 const sendMail = require('../../../scripts/mail');
 const app = express();
-app.get('/obtener/:id',(req, res)=>{
+app.get('/paseSalida/:id', (req, res) => {
     let id = req.params.id;
-    Salidas.find({_id:id})
-    .exec((err, pase)=>{
-       if (err) {
-           return res.status(400).json({
-               ok: false,
-               err
-           });
-       } 
-       return res.status(200).json({
-           ok: true,
-           count: pase.length,
-           pase
-       });
-    });
+    Salidas.find({ _id: id })
+        .exec((err, pase) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                });
+            }
+            return res.status(200).json({
+                ok: true,
+                count: pase.length,
+                pase
+            });
+        });
 });
 app.put('/actualizar/estatus/:id', (req, res) => {
     let id =req.params.id;
     let body = _.pick(req.body, 'idEstatus');
 
-    Salidas.findByIdAndUpdate(id, body,{new:true, runValidators:true , context:'query'},(err, PaseDB)=>{
+    Salidas.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, PaseDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
