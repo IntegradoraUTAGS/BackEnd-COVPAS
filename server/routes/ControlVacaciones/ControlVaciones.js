@@ -1,7 +1,9 @@
+/* jshint esversion: 6 */
 const express = require('express');
 const _ = require('underscore');
 const sendMail = require('../../../scripts/correoAprobacionVacaciones');
 const controlVacaciones = require('../../models/controlVacaciones');
+const persona = require('../../models/persona');
 const app = express();
 
 app.get('/ObtenerVacaciones', (req, res)=>{
@@ -17,33 +19,40 @@ app.get('/ObtenerVacaciones', (req, res)=>{
             err
         })
     })
-});
+})
 
+app.post("/RegistarVacaciones", (req, res) => {
 
-app.post('/registrar', (req, res) => {
-    let body = req.body
-    let controlvacaciones = new controlVacaciones({
-        idPersona: body.idPersona,
-        idDireccion: body.idDireccion,
-        idAutorizador:body.idAutorizador,
-        ajsnFechaSolitada:body.ajsnFechaSolitada,
-
-
-    });
+    const controlVacaciones = new controlVacaciones({
+        dteHoraSalida: new Date(),
+        dteHoraRegreso: new Date(),
+        strMotivo: "Ocupo De Un Dato"
+    })
     
-    new controlVacaciones(controlvacaciones).save().then((vacaciones) => {
-        sendMail.authorizerMail(mail,name,noEmpleado,direccion,fecha,IdAutorizador)
+    new controlVacaciones(controlVacaciones).save().then((resp) => {
+        res.json({resp})
+    }).catch((err) => {
+        res.json({err})
+    })
+})
+
+
+app.put('/RestarDias/:id', (req, res) => {
+    let id =req.params.id;
+    let body = _.pick(req.body, 'numDiasDisponibles');
+
+    persona.findByIdAndUpdate(id, body,{new:true, runValidators:true , context:'query'},(err, PaseDB)=>{
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
         return res.status(200).json({
             ok: true,
-            msg: 'Enviada solicitud de pase de salida esperando respuesta...',
-            cont: vacaciones
-        });
-    }).catch((err) => {
-        return res.status(400).json({
-            ok: false,
-            msg: 'Algo salio mal intenta de nuevo',
-            cont: err
+            PaseDB
         });
     });
 });
+
 module.exports = app;
