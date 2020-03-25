@@ -13,13 +13,13 @@ const nodemailer = require('nodemailer');
    
     let mailOptions = {
         from: 'COVPAS2020@gmail.com',
-        to: ` alex13pks@gmail.com, nataacero1@gmail.com,${mail}`,
+        to: ` alex13pks@gmail.com, aleesfeo1234@gmail.com,${mail}`,
         subject: 'Testing nodemailer',
         html: `<h1>SOLICITUD DE PASE DE SALIDA</h1><strong>${name}</strong>
          <strong>${noEmpleado}</strong> está solicitando un pase de salida <br>Con destino a 
          <strong>${destino}</strong> sale 
          <strong>${salida}</strong> y regresa
-          <strong>${regreso}</strong><br>
+          <strong>${regreso || ''}</strong><br>
           <a href="google.com">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
           </a> <a href="google.com?">

@@ -6,12 +6,29 @@ const Persona = require('../models/persona');
 let schema = mongoose.Schema;
 
 let PaseSchema = new schema({
-    dteHoraSalida: {
+    idAutoriza: {
+        type: schema.Types.ObjectId,
+        ref: 'Persona'
+    },
+    strEmpresaVisita: {
+        type: String,
+        required: true
+    },
+    strPersonaCita: {
+        type: String, 
+        required: true
+    },
+    dteFecha: {
         type: Date,
         required: true
     },
+    dteHoraSalida: {
+        type: String,
+        required: true
+    },
     dteHoraRegreso: {
-        type: Date
+        type: String,
+        default: 'No regresa'
     },
     strMotivo: {
         type: String,
@@ -23,7 +40,7 @@ let PaseSchema = new schema({
         ref: 'Persona',
         required: [true, 'Ingrese el nombre']
     },
-    ajsnTraslado: [
+    ajsnTraslado:[
         Destinos.schema
     ],
     strEstatus: {

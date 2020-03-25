@@ -2,7 +2,6 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
-const sendMail = require('../../../scripts/mail');
 const app = express();
 app.get('/paseSalida/:id', (req, res) => {
     let id = req.params.id;
@@ -46,7 +45,11 @@ app.post('/registrar/:id', (req, res) => {
         dteHoraRegreso: req.body.dteHoraRegreso,
         strMotivo: req.body.strMotivo,
         blnRegreso: req.body.blnRegreso,
-        idPersona: req.params.id
+        idPersona: req.params.id,
+        idAutoriza: req.body.idAutoriza,
+        strEmpresaVisita: req.body.strEmpresaVisita,
+        strPersonaCita: req.body.strPersonaCita,
+        dteFecha: req.body.dteFecha
     });
     
     new Salidas(paseSalida).save().then((pase) => {

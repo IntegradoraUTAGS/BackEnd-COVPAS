@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const mongooseHidden = require('mongoose-hidden')();
 const uniquevalidator = require('mongoose-unique-validator');
+const direccion = require('../models/direccion');
 
 let Schema = mongoose.Schema;
 
@@ -28,7 +29,8 @@ let personaSchema = new Schema({
         required: [true, 'Por favor ingresa el tipo de empleado']
     },
     idDireccion: {
-        type: Number
+        type: Schema.Types.ObjectId,
+        ref: 'direccion'
     },
     active: {
         type: Boolean,
