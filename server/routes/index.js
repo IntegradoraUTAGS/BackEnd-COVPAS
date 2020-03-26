@@ -9,5 +9,6 @@ app.use('/paseSalida',require('./paseSalida/paseSalida'));
 app.use('/estatus',require('./paseSalida/Estatus'));
 app.use('/direcciones',require('./Direcciones/Direcciones'));
 app.use('/vacaciones',require('./ControlVacaciones/ControlVaciones'));
+app.use('/paseVigilancia',require('./paseSalidaVigilancia/paseSalidaVigilancia'));
 
 module.exports = app;

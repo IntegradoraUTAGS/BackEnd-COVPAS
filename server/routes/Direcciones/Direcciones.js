@@ -6,8 +6,9 @@ const express = require('express');
 const app = express();
 
 app.post('/registrar',(res,req) =>{
+    let body = req.body
     const dir = new Direccion({
-        strNombre: req.body.strNombre
+        strNombre: body.strNombre
     });
 
     new Direccion(dir).save().then((resp)=> {

@@ -20,7 +20,7 @@ let PaseSchema = new schema({
     },
     dteFecha: {
         type: Date,
-        required: true
+        required: false
     },
     dteHoraSalida: {
         type: String,
