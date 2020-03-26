@@ -17,24 +17,24 @@ app.get('/ObtenerVacaciones', (req, res)=>{
         return res.status(400).json({
             ok: false,
             err
-        })
-    })
-})
+        });
+    });
+});
 
 app.post("/RegistarVacaciones", (req, res) => {
 
-    const controlVacaciones = new controlVacaciones({
+    const vacaciones = new controlVacaciones({
         dteHoraSalida: new Date(),
         dteHoraRegreso: new Date(),
         strMotivo: "Ocupo De Un Dato"
-    })
+    });
     
-    new controlVacaciones(controlVacaciones).save().then((resp) => {
+    new controlVacaciones(vacaciones).save().then((resp) => {
         res.json({resp})
     }).catch((err) => {
         res.json({err})
-    })
-})
+    });
+});
 
 
 app.put('/RestarDias/:id', (req, res) => {

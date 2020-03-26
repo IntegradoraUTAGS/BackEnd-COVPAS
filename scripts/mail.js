@@ -17,7 +17,7 @@ const nodemailer = require('nodemailer');
         subject: 'Testing nodemailer',
         html: `<h1>SOLICITUD DE PASE DE SALIDA</h1><strong>${name}</strong>
          <strong>${noEmpleado}</strong> está solicitando un pase de salida <br>Con destino a 
-         <strong>${destino}</strong> sale 
+         <strong>De: ${destino[0].De} A: ${destino[0].A}</strong> sale 
          <strong>${salida}</strong> y regresa
           <strong>${regreso || ''}</strong><br>
           <a href="google.com">

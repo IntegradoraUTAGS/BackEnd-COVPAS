@@ -32,15 +32,10 @@ app.put('/actualizar/:idpasesalida', (req, res) => {
             console.log((destino.length-1), i);
             // console.log(i)
             if( (destino.length-1) === i) {
-                PaseSalida.find({ idAutoriza: paseDB.idAutoriza}).populate('idAutoriza').populate('idPersona')
+                PaseSalida.findOne({ idAutoriza: paseDB.idAutoriza}).populate('idPersona').populate('idAutoriza')
         .then((resp) =>{
-            //console.log(resp);
-            JSON({resp});
-            return res.json({
-                ok: true,
-                resp
-            });
-            //sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre,resp.idPersona.numNoEmpleado,resp.dteHoraSalida,resp.dteHoraRegreso,resp.ajsnTraslado.A);    
+            console.log(resp.ajsnTraslado);
+            sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre,resp.idPersona.numNoEmpleado,resp.dteHoraSalida,resp.dteHoraRegreso,resp.ajsnTraslado);    
         }).catch((err)=>{
             console.log(err);
         });
@@ -61,7 +56,13 @@ app.put('/actualizar/:idpasesalida', (req, res) => {
                 err
             });
         }
-
+        PaseSalida.findOne({ idAutoriza: paseDB.idAutoriza}).populate('idPersona').populate('idAutoriza')
+        .then((resp) =>{
+            console.log(resp.ajsnTraslado);
+            sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre,resp.idPersona.numNoEmpleado,resp.dteHoraSalida,resp.dteHoraRegreso,resp.ajsnTraslado);    
+        }).catch((err)=>{
+            console.log(err);
+        });
         return res.status(200).json({
             ok: true,
             paseDB
