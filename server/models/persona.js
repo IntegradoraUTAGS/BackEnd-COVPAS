@@ -1,6 +1,8 @@
 /* jshint esversion: 6*/
 const mongoose = require('mongoose');
+const mongooseHidden = require('mongoose-hidden')();
 const uniquevalidator = require('mongoose-unique-validator');
+const direccion = require('../models/direccion');
 
 let Schema = mongoose.Schema;
 
@@ -27,7 +29,8 @@ let personaSchema = new Schema({
         required: [true, 'Por favor ingresa el tipo de empleado']
     },
     idDireccion: {
-        type: Number
+        type: Schema.Types.ObjectId,
+        ref: 'direccion'
     },
     active: {
         type: Boolean,
@@ -42,5 +45,11 @@ let personaSchema = new Schema({
 personaSchema.plugin(uniquevalidator, {
     message: '{PATH} Debe ser unico y diferente'
 });
+
+personaSchema.plugin(mongooseHidden, {
+    hidden: {
+        _id: false,
+        strPassword: true
+    }});
 
 module.exports = mongoose.model('Persona', personaSchema);

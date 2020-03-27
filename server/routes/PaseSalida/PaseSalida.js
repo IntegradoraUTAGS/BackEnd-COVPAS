@@ -2,30 +2,29 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
-const sendMail = require('../../../scripts/mail');
 const app = express();
-app.get('/paseSalida/:id',(req, res)=>{
+app.get('/paseSalida/:id', (req, res) => {
     let id = req.params.id;
-    Salidas.find({_id:id})
-    .exec((err, pase)=>{
-       if (err) {
-           return res.status(400).json({
-               ok: false,
-               err
-           });
-       } 
-       return res.status(200).json({
-           ok: true,
-           count: pase.length,
-           pase
-       });
-    });
+    Salidas.find({ _id: id })
+        .exec((err, pase) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                });
+            }
+            return res.status(200).json({
+                ok: true,
+                count: pase.length,
+                pase
+            });
+        });
 });
-app.put('/paseSalida/:id', (req, res) => {
+app.put('/actualizar/estatus/:id', (req, res) => {
     let id =req.params.id;
-    let body = _.pick(req.body, 'strEstatus');
+    let body = _.pick(req.body, 'idEstatus');
 
-    Salidas.findByIdAndUpdate(id, body,{new:true, runValidators:true , context:'query'},(err, PaseDB)=>{
+    Salidas.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, PaseDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -39,17 +38,22 @@ app.put('/paseSalida/:id', (req, res) => {
     });
 
 });
-app.post('/paseSalida/:id', (req, res) => {
+app.post('/registrar/:id', (req, res) => {
+
     let paseSalida = new Salidas({
-        dteHoraSalida: body.dteHoraSalida,
-        dteHoraRegreso: body.dteHoraRegreso,
-        strMotivo: body.strMotivo,
-        strRegreso: body.strRegreso,
-        idPersona: req.params.id
+        dteHoraSalida: req.body.dteHoraSalida,
+        dteHoraRegreso: req.body.dteHoraRegreso,
+        strMotivo: req.body.strMotivo,
+        blnRegreso: req.body.blnRegreso,
+        idPersona: req.params.id,
+        idAutoriza: req.body.idAutoriza,
+        strEmpresaVisita: req.body.strEmpresaVisita,
+        strPersonaCita: req.body.strPersonaCita,
+        dteFecha: req.body.dteFecha
     });
     
     new Salidas(paseSalida).save().then((pase) => {
-        //sendMail.authorizerMail(email, nombre, noEmpleado, salida, regreso, destino);
+        //sendMail.authorizerMail(mail,name,noEmpleado,salida,regreso,destino);
         return res.status(200).json({
             ok: true,
             msg: 'Enviada solicitud de pase de salida esperando respuesta...',

@@ -2,7 +2,7 @@
 
 const nodemailer = require('nodemailer');
 
- const authorizerMail = (mail,name,noEmpleado,salida,regreso,destino) =>{
+ const authorizerMail = (mail,name,noEmpleado,direccion,fecha,IdAutorizador) =>{
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -10,16 +10,15 @@ const nodemailer = require('nodemailer');
             pass: 'UnPMtWy46uVbSDH',
         }
     });
-   
+
     let mailOptions = {
         from: 'COVPAS2020@gmail.com',
-        to: ` alex13pks@gmail.com, aleesfeo1234@gmail.com,${mail}`,
-        subject: 'Testing nodemailer',
-        html: `<h1>SOLICITUD DE PASE DE SALIDA</h1><strong>${name}</strong>
-         <strong>${noEmpleado}</strong> está solicitando un pase de salida <br>Con destino a 
-         <strong>De: ${destino[0].De} A: ${destino[0].A}</strong> sale 
-         <strong>${salida}</strong> y regresa
-          <strong>${regreso || ''}</strong><br>
+        to: `alex13pks@gmail.com, nataacero1@gmail.com, ${mail}`,
+        subject: `Aprobacion de Vacaciones de ${noEmpleado}` ,
+        html: `<h1>Aprobacion de Vacaciones</h1><strong>${name}</strong>
+         <strong>${noEmpleado}</strong> del a direccion de <strong>${direccion}</strong> está solicitando una aprobación de vacaciones <br> el dia de  
+         <strong>${fecha}</strong></br>
+         <strong>${IdAutorizador}</strong>
           <a href="google.com">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
           </a> <a href="google.com?">

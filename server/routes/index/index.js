@@ -8,5 +8,6 @@ app.use('/persona',require('../Persona/Persona'));
 app.use('/paseSalida',require('../paseSalida/paseSalida'));
 app.use('/direcciones',require('../Direcciones/Direcciones'));
 app.use('/vacaciones', require('../ControlVacaciones/ControlVaciones'));
+app.use('/RegistarVacaciones', require('../ControlVacaciones/ControlVaciones'));
 
 module.exports = app;
