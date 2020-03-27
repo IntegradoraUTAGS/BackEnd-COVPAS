@@ -51,28 +51,5 @@ app.post('/registrar', (req, res) => {
         });
     
     })
-   
-    app.put('/finalizar/:id', (req, res) => {
-        let id = req.params.id
-        let body = _.pick(req.body, ['gasolinaRegreso','kilometrosRegreso','estatus']);
-                
-            PaseSalidaVigilancia.findByIdAndUpdate(id,body,{new:true, runValidators:true , context:'query'})
-            .then((resp)=>{
-            return res.status(200).json({
-                ok: true,
-                msg: 'Pase de salida Finalizado con exito',
-                cont: resp
-            }); 
-            }).catch((err) => {
-                return res.status(400).json({
-                    ok: false,
-                    msg: 'Oh oh ocurrio un error',
-                    cont: err
-                });
-            });
-        })
-
-
-
 
 module.exports = app;
