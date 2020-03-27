@@ -49,7 +49,7 @@ let PaseSchema = new schema({
     },
     blnRegreso: {
         type: Boolean,
-        required: [true, 'es requerido']
+        default: false
     }
 
 

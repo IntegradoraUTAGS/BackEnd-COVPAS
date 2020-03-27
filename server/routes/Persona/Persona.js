@@ -2,9 +2,10 @@
 const Persona = require('../../models/persona');
 const express = require('express');
 const bcrypt = require('bcrypt');
+const { verificaToken } = require('../../middlewares/autenticacion');
 const app = express();
 
-app.get('/obtener', (req, res) => {
+app.get('/obtener',[verificaToken], (req, res) => {
     Persona.find({ active: true }).populate('idDireccion').then((resp) => {
         return res.status(200).json({
             ok: true,
@@ -20,7 +21,7 @@ app.get('/obtener', (req, res) => {
     });
 });
 
-app.post('/registrar', (req, res) => {
+app.post('/registrar',  (req, res) => {
     let body = req.body;
 
     const usuario = new Persona({
