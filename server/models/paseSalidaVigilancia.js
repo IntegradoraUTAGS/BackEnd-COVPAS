@@ -14,36 +14,31 @@ let PaseVigilanciaSchema = new schema({
         type: String
     },
     nombreReviso:{
-        type:String,
+        type: String,
         required:[true,'Ingrese el nombre de quen reviso el pase de salida']
     },
     gasolinaSalida:{
-        type:String,
+        type: String,
         required:[true,'Ingrese la gasolina del vehiculo']
     },
     kilometrosSalida:{
-        type:Number,
+        type: Number,
         required:[true,'Ingrese los kilometros del vehiculo']
     },
     gasolinaRegreso:{
-        type:String,
+        type: String,
         required:[true,'Ingrese la gasolina del vehiculo'],
         default:'En proeso'
     },
     kilometrosRegreso:{
-        type:Number,
+        type: Number,
         required:[true,'Ingrese los kilometros del vehiculo'],
         default:0
     },
     estatus:{
-        type:String,
+        type: String,
         default:'En proceso'
     }
-    
-   
-
-
-
 });
 
 PaseVigilanciaSchema.plugin(uniquevalidator, {
