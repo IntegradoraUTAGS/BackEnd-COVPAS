@@ -33,14 +33,24 @@ app.post('/login', (req, res) => {
                 }
             });
         }
-        let token = jwt.sign({
-            usuario: usuarioDB
-        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
-        return res.status(200).json({
-            ok: true,
-            persona: usuarioDB,
-            token
+        Persona.findOne({_id: usuarioDB._id}).populate('idDireccion').then((resp) => {
+            console.log(resp);
+            let token = jwt.sign({
+                usuario: resp
+            }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
+            return res.status(200).json({
+                ok: true,
+                persona: resp,
+                token
+            });
+        }).catch((err) => {
+            return res.status(400).json({
+                ok: false,
+                msg: 'ocurrio un error',
+                err
+            });
         });
+        
     });
 });
 

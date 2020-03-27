@@ -45,7 +45,7 @@ let PaseSchema = new schema({
     ],
     strEstatus: {
         type: String,
-        default: "En Proceso"
+        default: "Sin reportes"
     },
     blnRegreso: {
         type: Boolean,

@@ -2,10 +2,11 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
+const sendMail = require('../../../scripts/mail');
 const app = express();
-app.get('/paseSalida/:id', (req, res) => {
+app.get('/obtener/:id', (req, res) => {
     let id = req.params.id;
-    Salidas.find({ _id: id })
+    Salidas.findOne({ _id: id })
         .exec((err, pase) => {
             if (err) {
                 return res.status(400).json({
@@ -20,11 +21,10 @@ app.get('/paseSalida/:id', (req, res) => {
             });
         });
 });
-app.put('/actualizar/estatus/:id', (req, res) => {
+app.get('/actualizar/estatus/:id/:strEstatus', (req, res) => {
     let id =req.params.id;
-    let body = _.pick(req.body, 'idEstatus');
-
-    Salidas.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, PaseDB) => {
+    let status = req.params.strEstatus;
+    Salidas.update({_id: id},{$set:{strEstatus: status}}, (err, PaseDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -67,5 +67,13 @@ app.post('/registrar/:id', (req, res) => {
         });
     });
 });
-
+app.get('/enviarConfirmacion/:idPaseSalida', (req,res) => {
+    Salidas.findOne({ _id: req.params.idPaseSalida}).populate('idPersona').populate('idAutoriza')
+        .then((resp) =>{
+            console.log(resp.ajsnTraslado);
+            sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre,resp.idPersona.numNoEmpleado,resp.dteHoraSalida,resp.dteHoraRegreso,resp.ajsnTraslado,resp._id);    
+        }).catch((err)=>{
+            console.log(err);
+        });
+})
 module.exports = app;
