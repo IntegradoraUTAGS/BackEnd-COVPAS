@@ -2,7 +2,6 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
-const sendMail = require('../../../scripts/mail');
 const app = express();
 app.get('/obtener/:id', (req, res) => {
     let id = req.params.id;

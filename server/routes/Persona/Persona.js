@@ -78,8 +78,4 @@ app.post('/registrar',  (req, res) => {
 
 });
 
-app.put('/actualizar', (req, res) => {
-
-});
-
 module.exports = app;

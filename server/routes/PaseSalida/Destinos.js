@@ -26,7 +26,6 @@ app.put('/actualizar/:idpasesalida', (req, res) => {
             paseDB
         });
     });
-
 });
 
 module.exports = app;
