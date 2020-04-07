@@ -2,10 +2,12 @@
 const PaseSalidaVigilancia = require('../../models/paseSalidaVigilancia');
 const PaseSalida = require('../../models/paseSalida');
 const _ = require('underscore');
+
 const express = require('express');
+
 const app = express();
 
-app.get('/obtenerSalidasVigilancia', (req, res) => {
+app.get('/obtener', (req, res) => {
     PaseSalidaVigilancia.find().then((resp) => {
         return res.status(200).json({
             ok: true,
@@ -15,7 +17,7 @@ app.get('/obtenerSalidasVigilancia', (req, res) => {
     }).catch((err) => {
         return res.status(400).json({
             ok: false,
-            msg: 'Oh oh, ocurrio un error verifica e intentelo de nuevo',
+            msg: 'Oh oh ocurrio un error verifica e intenta de nuevo',
             cont: err
         });
     });
@@ -35,8 +37,10 @@ app.post('/registrar', (req, res) => {
        new PaseSalidaVigilancia(paseSalidaVigilancia).save().then((resp) => {
             
         PaseSalida.findByIdAndUpdate({_id:paseSalidaVigilancia.paseSalida},{strEstatus:'false'})
-        .then((resp)=>{  
+        .then((resp)=>{
+            
         })
+
         return res.status(200).json({
             ok: true,
             msg: 'Pase de salida revisado con exito',
@@ -51,5 +55,29 @@ app.post('/registrar', (req, res) => {
         });
     
     })
+   
+    app.put('/finalizar/:id', (req, res) => {
+        let id = req.params.id
+        let body = _.pick(req.body, ['gasolinaRegreso','kilometrosRegreso','estatus']);
+                
+            PaseSalidaVigilancia.findByIdAndUpdate(id,body,{new:true, runValidators:true , context:'query'})
+            .then((resp)=>{
+            return res.status(200).json({
+                ok: true,
+                msg: 'Pase de salida Finalizado con exito',
+                cont: resp
+            }); 
+            }).catch((err) => {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'Oh oh ocurrio un error',
+                    cont: err
+                });
+            });
+        
+        })
+
+
+
 
 module.exports = app;

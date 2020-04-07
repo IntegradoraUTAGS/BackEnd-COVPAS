@@ -26,10 +26,6 @@ let PaseSchema = new schema({
         type: String,
         required: true
     },
-    dteHoraSalida: {
-        type: String,
-        required: true
-    },
     dteHoraRegreso: {
         type: String,
         default: 'No regresa'
