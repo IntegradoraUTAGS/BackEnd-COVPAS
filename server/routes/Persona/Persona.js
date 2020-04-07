@@ -3,9 +3,10 @@ const Persona = require('../../models/persona');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { verificaToken } = require('../../middlewares/autenticacion');
+const _ = require('underscore');
 const app = express();
 
-app.get('/obtener',[verificaToken], (req, res) => {
+app.get('/obtener', (req, res) => {
     Persona.find({ active: true }).populate('idDireccion').then((resp) => {
         return res.status(200).json({
             ok: true,
@@ -78,8 +79,48 @@ app.post('/registrar',  (req, res) => {
 
 });
 
-app.put('/actualizar', (req, res) => {
+app.put('/actualizar/:id', (req, res) => {
+    let body = _.pick(req.body, ['strNombre','strTipoEmpleado']);
+    Persona.findByIdAndUpdate(req.params.id, body, (err, resp) => {
+        if(err) {
+            return res.status(400).json({
+                ok: true,
+                cont: err
+            });
+        }
+        return res.status(200).json({
+            ok: false,
+            cont: resp
+        });
+    });
+});
 
+app.delete('/eliminar/:id', (req, res) => {
+    // Persona.findByIdAndUpdate(req.params.id, {$set} (err, resp) => {
+    //     if(err) {
+    //         return res.status(400).json({
+                
+    //         })
+    //     }
+    // });
+});
+
+app.put('/ModificarDias/:id', (req, res) => {
+    let id =req.params.id;
+    let body = _.pick(req.body, 'numDiasDisponibles');
+
+    persona.findByIdAndUpdate(id, body,{new:true, runValidators:true , context:'query'},(err, PaseDB)=>{
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            PaseDB
+        });
+    });
 });
 
 module.exports = app;

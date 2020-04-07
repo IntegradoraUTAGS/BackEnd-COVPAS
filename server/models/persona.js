@@ -39,7 +39,7 @@ let personaSchema = new Schema({
     numDiasDisponibles: {
         type: Number,
         default: 0
-    },
+    }
 });
 
 personaSchema.plugin(uniquevalidator, {
