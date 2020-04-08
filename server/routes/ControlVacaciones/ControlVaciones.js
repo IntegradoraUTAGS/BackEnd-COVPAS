@@ -67,7 +67,7 @@ app.get('/enviarConfirmacion/:id', (req,res) => {
     controlVacaciones.findOne({ _id: req.params.id}).populate('idPersona').populate('idAutoriza').populate('idDireccion')
         .then((resp) =>{
             console.log(resp.adteFechas);
-            sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre, resp.idPersona.numNoEmpleado,resp.adteFechas);    
+            sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre, resp.idPersona.numNoEmpleado,resp.adteFechas,resp._id);    
         }).catch((err)=>{
             console.log(err);
         });
@@ -89,6 +89,23 @@ app.put('/actualizar/:id/:idPersona',(req,res) => {
             cont: err
         });
     });
+});
+app.get('/actualizar/estatus/:id/:strEstatus', (req, res) => {
+    let id =req.params.id;
+    let status = req.params.strEstatus;
+    controlVacaciones.update({_id: id},{$set:{strEstatus: status}}, (err, PaseDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            PaseDB
+        });
+    });
+
 });
 
 module.exports = app;

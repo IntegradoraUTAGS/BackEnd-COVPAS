@@ -80,29 +80,35 @@ app.post('/registrar',  (req, res) => {
 });
 
 app.put('/actualizar/:id', (req, res) => {
-    let body = _.pick(req.body, ['strNombre','strTipoEmpleado']);
+    let body = _.pick(req.body, ['strNombre','strTipoEmpleado','numDiasDisponibles']);
     Persona.findByIdAndUpdate(req.params.id, body, (err, resp) => {
         if(err) {
             return res.status(400).json({
-                ok: true,
+                ok: false,
                 cont: err
             });
         }
         return res.status(200).json({
-            ok: false,
+            ok: true,
             cont: resp
         });
     });
 });
 
 app.delete('/eliminar/:id', (req, res) => {
-    // Persona.findByIdAndUpdate(req.params.id, {$set} (err, resp) => {
-    //     if(err) {
-    //         return res.status(400).json({
-                
-    //         })
-    //     }
-    // });
+    Persona.findByIdAndUpdate(req.params.id, {$set:{active: false}}, (err, resp) => {
+        if(err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+
+        return res.status(200).json({
+            ok: true,
+            resp
+        });
+    });
 });
 
 app.put('/ModificarDias/:id', (req, res) => {
@@ -123,4 +129,17 @@ app.put('/ModificarDias/:id', (req, res) => {
     });
 });
 
+app.get('/obtener/:id', (req, res) => {
+    Persona.findById(req.params.id).populate('idDireccion').then((resp) => {
+        return res.status(200).json({
+            ok: true,
+            resp
+        });
+    }).catch((err) => {
+        return res.status(400).json({
+            ok: false,
+            err 
+        });
+    });
+});
 module.exports = app;

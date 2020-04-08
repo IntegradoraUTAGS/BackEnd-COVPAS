@@ -5,6 +5,7 @@ const Salidas = require('../../models/paseSalida');
 const sendMail = require('../../../scripts/mail');
 const app = express();
 app.get('/obtener/:id', (req, res) => {
+    
     let id = req.params.id;
     Salidas.findOne({ _id: id })
         .exec((err, pase) => {
@@ -67,7 +68,7 @@ app.post('/registrar/:id', (req, res) => {
         });
     });
 });
-app.get('/enviarConfirmacion/:id', (req,res) => {
+app.get('/enviarConfirmacion/:idPaseSalia', (req,res) => {
     Salidas.findOne({ _id: req.params.idPaseSalida}).populate('idPersona').populate('idAutoriza')
         .then((resp) =>{
             console.log(resp.ajsnTraslado);
