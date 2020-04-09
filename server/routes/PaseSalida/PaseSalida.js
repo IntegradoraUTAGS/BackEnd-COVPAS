@@ -2,10 +2,14 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
+const Persona = require('../../models/persona');
+
 const app = express();
 app.get('/obtener/:id', (req, res) => {
     let id = req.params.id;
     Salidas.findOne({ _id: id })
+    .populate('idPersona')
+    .populate('idAutoriza')
         .exec((err, pase) => {
             if (err) {
                 return res.status(400).json({
@@ -13,6 +17,7 @@ app.get('/obtener/:id', (req, res) => {
                     err
                 });
             }
+           
             return res.status(200).json({
                 ok: true,
                 count: pase.length,
