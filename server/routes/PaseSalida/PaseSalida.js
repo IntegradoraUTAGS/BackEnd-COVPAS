@@ -11,6 +11,7 @@ app.get('/obtener/:id', (req, res) => {
     Salidas.findById(id)
         .populate('idPersona')
         .exec((err, pase) => {
+            console.log(pase)
             if (err) {
                 return res.status(400).json({
                     ok: false,

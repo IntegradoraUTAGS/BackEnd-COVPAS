@@ -36,7 +36,7 @@ app.post('/registrar', (req, res) => {
     });
 
     paseSalidaVigilancia.save().then((resp) => {
-        
+
         PaseSalida.findByIdAndUpdate({ _id: paseSalidaVigilancia.paseSalida }, { strEstatus: 'false' })
             .then((resp) => {
 
