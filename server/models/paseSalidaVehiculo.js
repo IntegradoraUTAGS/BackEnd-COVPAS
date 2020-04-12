@@ -45,6 +45,21 @@ let paseSalidaVehiculoSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Persona'
     },
+    strObservaciones: {
+        type: String
+    },
+    blnEstatus1: {
+        type: Boolean
+    },
+    blnEstatus2: {
+        type: Boolean
+    },
+    blnEstatus3: {
+        type: Boolean
+    },
+    blnEstatus4: {
+        type: Boolean
+    },
     strEstatus: {
         type: String,
         default: 'En progreso'

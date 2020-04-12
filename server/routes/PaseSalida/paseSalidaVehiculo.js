@@ -6,8 +6,12 @@ const app = express();
 
 app.post('/registrar/:id', (req,res) => {
     const solicitud = new SalidaVehiculo({
-            idPaseSalida: req.params.idPaseSalida,
+            idPaseSalida: req.params.id,
+            dteFechasolicitud: req.body.dteFechasolicitud,
             idVehiculo: req.body.idVehiculo,
+            strServicio: req.body.strServicio,
+            strChofer: req.body.strChofer,
+            strObservaciones: req.body.strObservaciones,
             idAutoriza1: req.body.idAutoriza1,
             idAutoriza2: req.body.idAutoriza2,
             idAutoriza3: req.body.idAutoriza3,
