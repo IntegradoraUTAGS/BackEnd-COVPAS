@@ -2,7 +2,7 @@
 
 const nodemailer = require('nodemailer');
 
- const authorizerMail = (mail,name,noEmpleado,fecha,idVacaciones) =>{
+ const authorizerMail = (mail1,mail2,mail3,mail4,name,noEmpleado,salida,regreso,destino,idPaseSalida) =>{
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -10,18 +10,19 @@ const nodemailer = require('nodemailer');
             pass: 'UnPMtWy46uVbSDH',
         }
     });
-
+   
     let mailOptions = {
         from: 'COVPAS2020@gmail.com',
-        to: ` alex13pks@gmail.com, aleesfeo1234@gmail.com,${mail}`,
-        subject: `Aprobacion de Vacaciones de ${noEmpleado}` ,
-        html: `<h1>Aprobacion de Vacaciones</h1>
-        <strong>${name} ${noEmpleado}</strong> está solicitando una aprobación de vacaciones <br>
-        los dias de  
-         <strong>${fecha}</strong></br>
-          <a href="http://localhost:4200/confirmar-vacaciones/${idVacaciones}/Aceptado">
+        to: ` alex13pks@gmail.com, aleesfeo1234@gmail.com,${mail1},${mail2},${mail3},${mail4}`,
+        subject: 'Testing nodemailer',
+        html: `<h1>SOLICITUD DE VEHICULO</h1><strong>${name}</strong>
+         <strong>${noEmpleado}</strong> está solicitando un vehiculo<br>Con destino a 
+         <strong>De: ${destino[0].De} A: ${destino[0].A}</strong> sale 
+         <strong>${salida}</strong> y regresa
+          <strong>${regreso || ''}</strong><br>
+          <a href="http://localhost:4200/confirmar-pase-salida-vehiculo/${idPaseSalida}/Aceptado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
-          </a> <a href="http://localhost:4200/confirmar-vacaciones/${idVacaciones}/Rechazado">
+          </a> <a href="http://localhost:4200/confirmar-pase-salida-vehiculo/${idPaseSalida}/Rechazado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px; min-height: 100px;max-height: 300px;background-color: rgba(194, 81, 81, 0.76);margin-top: 50px;margin-left: 50px;">DENEGAR</button>
           
           </a>` //html body

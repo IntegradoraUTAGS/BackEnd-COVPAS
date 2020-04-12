@@ -2,27 +2,21 @@
 const mongoose = require('mongoose');
 const uniquevalidator = require('mongoose-unique-validator');
 const Persona = require('./persona');
-const Fecha = require('./FechaVacaciones');
 //const Direccion = require('./direccion');
 let Schema = mongoose.Schema;
 
 let solicitudVacaciones=new Schema({
     idPersona:{
         type: Schema.Types.ObjectId,
-        ref: 'Persona'
+        ref: 'Persona',
+        required: [true, 'Persona es requerida']
     },
-    idDireccion:{
-        // type: Schema.Types.ObjectId,
-        // ref: 'Direccion'
-        type: String
-    },
-    idAutorizador:{
+    idAutoriza:{
         type: Schema.Types.ObjectId,
-        ref: 'Persona'
+        ref: 'Persona',
+        required: [true, 'persona que autoriza es requerida']
     },
-    ajsnFechaSolicitada: [{
-      Fecha: Fecha.schema
-    }],
+    adteFechas: [],
     strEstatus: {
         type: String,
         default: 'En Progreso'

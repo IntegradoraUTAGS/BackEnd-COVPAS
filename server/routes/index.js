@@ -10,5 +10,7 @@ app.use('/estatus',require('./paseSalida/Estatus'));
 app.use('/direcciones',require('./Direcciones/Direcciones'));
 app.use('/vacaciones',require('./ControlVacaciones/ControlVaciones'));
 app.use('/paseVigilancia',require('./paseSalidaVigilancia/paseSalidaVigilancia'));
+app.use('/vehiculos',require('./Vehiculos/Vehiculos'));
+app.use('/paseSalidaVehiculo', require('./paseSalida/paseSalidaVehiculo'));
 
 module.exports = app;

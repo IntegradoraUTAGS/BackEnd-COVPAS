@@ -4,6 +4,7 @@ const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
 const app = express();
 app.get('/obtener/:id', (req, res) => {
+    
     let id = req.params.id;
     Salidas.findOne({ _id: id })
         .exec((err, pase) => {
@@ -66,7 +67,7 @@ app.post('/registrar/:id', (req, res) => {
         });
     });
 });
-app.get('/enviarConfirmacion/:idPaseSalida', (req,res) => {
+app.get('/enviarConfirmacion/:idPaseSalia', (req,res) => {
     Salidas.findOne({ _id: req.params.idPaseSalida}).populate('idPersona').populate('idAutoriza')
         .then((resp) =>{
             console.log(resp.ajsnTraslado);
@@ -74,5 +75,5 @@ app.get('/enviarConfirmacion/:idPaseSalida', (req,res) => {
         }).catch((err)=>{
             console.log(err);
         });
-})
+});
 module.exports = app;

@@ -45,7 +45,7 @@ let PaseSchema = new schema({
     ],
     strEstatus: {
         type: String,
-        default: "Sin reportes"
+        default: "En progreso"
     },
     blnRegreso: {
         type: Boolean,
@@ -59,4 +59,4 @@ PaseSchema.plugin(uniquevalidator, {
     message: '{PATH} Debe ser unico y diferente'
 });
 
-module.exports = mongoose.model('Pase', PaseSchema);
+module.exports = mongoose.model('PaseSalida', PaseSchema);
