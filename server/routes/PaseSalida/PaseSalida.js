@@ -3,9 +3,13 @@ const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
 const app = express();
+const Persona = require('../../models/persona');
+
 app.get('/obtener/:id', (req, res) => {
     let id = req.params.id;
-    Salidas.findOne({ _id: id })
+
+    Salidas.findById(id)
+        .populate('idPersona')
         .exec((err, pase) => {
             if (err) {
                 return res.status(400).json({
@@ -20,6 +24,7 @@ app.get('/obtener/:id', (req, res) => {
             });
         });
 });
+
 app.get('/actualizar/estatus/:id/:strEstatus', (req, res) => {
     let id =req.params.id;
     let status = req.params.strEstatus;

@@ -59,4 +59,4 @@ PaseSchema.plugin(uniquevalidator, {
     message: '{PATH} Debe ser unico y diferente'
 });
 
-module.exports = mongoose.model('Pase', PaseSchema);
+module.exports = mongoose.model('Pasesalida', PaseSchema);

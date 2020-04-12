@@ -4,7 +4,8 @@
   "description": "Repositorio del BackEnd del proyecto de Control de vacaciones, pases de salida personales y vehículares.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,11 +24,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.3",
+    "mongoose": "^5.9.7",
     "mongoose-hidden": "^1.8.1",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemailer": "^6.4.3",
-    "nodemon": "^2.0.2",
-    "underscore": "^1.9.2"
+    "nodemailer": "^6.4.6",
+    "nodemon": "^2.0.3",
+    "underscore": "^1.10.2"
   }
 }

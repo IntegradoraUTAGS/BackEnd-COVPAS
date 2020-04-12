@@ -27,55 +27,56 @@ app.post('/registrar', (req, res) => {
     let body = req.body;
 
     const paseSalidaVigilancia = new PaseSalidaVigilancia({
-       paseSalida : body.paseSalida,
-       observacion: body.observacion,
-       nombreReviso:body.nombreReviso,
-       kilometrosSalida:body.kilometrosSalida,
-       gasolinaSalida:body.gasolinaSalida
-        
+        paseSalida: body.paseSalida,
+        observacion: body.observacion,
+        nombreReviso: body.nombreReviso,
+        kilometrosSalida: body.kilometrosSalida,
+        gasolinaSalida: body.gasolinaSalida
+
     });
-       new PaseSalidaVigilancia(paseSalidaVigilancia).save().then((resp) => {
-            
-        PaseSalida.findByIdAndUpdate({_id:paseSalidaVigilancia.paseSalida},{strEstatus:'false'})
-        .then((resp)=>{
-            
-        })
+
+    paseSalidaVigilancia.save().then((resp) => {
+        
+        PaseSalida.findByIdAndUpdate({ _id: paseSalidaVigilancia.paseSalida }, { strEstatus: 'false' })
+            .then((resp) => {
+
+            })
 
         return res.status(200).json({
             ok: true,
             msg: 'Pase de salida revisado con exito',
             cont: resp
-        }); 
-        }).catch((err) => {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Oh oh ocurrio un error al registrar un usuario',
-                cont: err
-            });
         });
-    
-    })
-   
-    app.put('/finalizar/:id', (req, res) => {
-        let id = req.params.id
-        let body = _.pick(req.body, ['gasolinaRegreso','kilometrosRegreso','estatus']);
-                
-            PaseSalidaVigilancia.findByIdAndUpdate(id,body,{new:true, runValidators:true , context:'query'})
-            .then((resp)=>{
+    }).catch((err) => {
+        return res.status(400).json({
+            ok: false,
+            msg: 'Oh oh ocurrio un error al registrar un usuario',
+            cont: err
+        });
+    });
+
+})
+
+app.put('/finalizar/:id', (req, res) => {
+    let id = req.params.id
+    let body = _.pick(req.body, ['gasolinaRegreso', 'kilometrosRegreso', 'estatus']);
+
+    PaseSalidaVigilancia.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' })
+        .then((resp) => {
             return res.status(200).json({
                 ok: true,
                 msg: 'Pase de salida Finalizado con exito',
                 cont: resp
-            }); 
-            }).catch((err) => {
-                return res.status(400).json({
-                    ok: false,
-                    msg: 'Oh oh ocurrio un error',
-                    cont: err
-                });
             });
-        
-        })
+        }).catch((err) => {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Oh oh ocurrio un error',
+                cont: err
+            });
+        });
+
+})
 
 
 
