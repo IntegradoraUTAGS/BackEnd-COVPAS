@@ -1,7 +1,9 @@
 const express = require('express');
 const _ = require('underscore');
 const SalidaVehiculo = require('../../models/paseSalidaVehiculo');
+const Salidas = require('../../models/paseSalida');
 const sendMail = require('../../../scripts/correoAprovacionVehiculos');
+const Persona = require('../../models/persona');
 const app = express();
 
 app.post('/registrar/:id', (req,res) => {
@@ -31,24 +33,37 @@ app.post('/registrar/:id', (req,res) => {
     });
 });
 
-app.get('/obtener/:id', (req, res) => {
-    SalidaVehiculo.findOne({_id: req.params.id})
-    .populate('idPersona')
-    .populate('idVehiculo')
-    .populate('idAutoriza1')
-    .populate('idAutoriza2')
-    .populate('idAutoriza3')
-    .populate('idAutoriza4').then((resp) => {
-        return res.status(200).json({
-            ok: true,
-            cont: resp
-        });
-    }).catch((err) => {
-        return res.status(200).json({
-            ok: false,
-            cont: err
-        });
-    });
+app.get('/obtener/:numNoEmpleado', (req, res) => {
+    
+   Persona.findOne({numNoEmpleado: req.params.numNoEmpleado}).then((resp) => {
+       console.log(resp)
+       Salidas.findOne({idPersona: resp._id,strEstatus: "Aceptado"}).then((resp) => {
+           console.log(resp);
+           SalidaVehiculo.findOne({idPaseSalida: resp._id})
+           .populate('idPaseSalida')
+        .populate('idVehiculo')
+        .populate('idAutoriza1')
+        .populate('idAutoriza2')
+        .populate('idAutoriza3')
+        .populate('idAutoriza4').then((resp) => {
+               console.log(resp);
+               return res.status(200).json({
+                   ok: true,
+                   cont: resp
+               });
+           }).catch((err)=>{
+               console.log(err);
+           });
+       }).catch((err) => {
+           console.log(err)
+       });
+   }).catch((err) => {
+       return res.status(400).json({
+           ok: false,
+           cont: err
+       });
+   });
+    
 });
 
 app.get('/actualizar/estatus/:id/:strEstatus', (req, res) => {

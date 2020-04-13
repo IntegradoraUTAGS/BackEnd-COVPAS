@@ -52,4 +52,4 @@ personaSchema.plugin(mongooseHidden, {
         strPassword: true
     }});
 
-module.exports = mongoose.model('Persona', personaSchema);
+module.exports = mongoose.model('Persona', personaSchema, 'persona');

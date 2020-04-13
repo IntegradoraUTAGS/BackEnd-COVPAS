@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 const PaseSalidaVigilancia = require('../../models/paseSalidaVigilancia');
-const PaseSalida = require('../../models/paseSalida');
+const PaseSalida = require('../../models/paseSalidaVehiculo');
 const _ = require('underscore');
 
 const express = require('express');
@@ -39,7 +39,7 @@ app.post('/registrar', (req, res) => {
         PaseSalida.findByIdAndUpdate({_id:paseSalidaVigilancia.paseSalida},{strEstatus:'false'})
         .then((resp)=>{
             
-        })
+        });
 
         return res.status(200).json({
             ok: true,

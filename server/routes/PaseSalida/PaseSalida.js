@@ -2,11 +2,12 @@
 const express = require('express');
 const _ = require('underscore');
 const Salidas = require('../../models/paseSalida');
+const sendMail = require('../../../scripts/mail');
 const app = express();
 app.get('/obtener/:id', (req, res) => {
     
     let id = req.params.id;
-    Salidas.findOne({ _id: id })
+    Salidas.findById(id).populate('idPersona')
         .exec((err, pase) => {
             if (err) {
                 return res.status(400).json({
@@ -67,10 +68,10 @@ app.post('/registrar/:id', (req, res) => {
         });
     });
 });
-app.get('/enviarConfirmacion/:idPaseSalia', (req,res) => {
-    Salidas.findOne({ _id: req.params.idPaseSalida}).populate('idPersona').populate('idAutoriza')
+app.get('/enviarConfirmacion/:idPaseSalida', (req,res) => {
+    Salidas.findOne({ _id: req.params.idPaseSalida})
         .then((resp) =>{
-            console.log(resp.ajsnTraslado);
+            console.log(resp)
             sendMail.authorizerMail(resp.idAutoriza.strEmail,resp.idPersona.strNombre,resp.idPersona.numNoEmpleado,resp.dteHoraSalida,resp.dteHoraRegreso,resp.ajsnTraslado,resp._id);    
         }).catch((err)=>{
             console.log(err);
