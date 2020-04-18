@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'dev') {
     process.env.URLDB = 'mongodb://localhost:27017/COVPAS';
 
 } else {
-    process.env.URLDB = '';
+    process.env.URLDB = 'mongodb://177.17.1.7:27037/COVPAS';
 }
 
 
