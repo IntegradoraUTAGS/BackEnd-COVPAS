@@ -19,9 +19,9 @@ const nodemailer = require('nodemailer');
         <strong>${name} ${noEmpleado}</strong> está solicitando una aprobación de vacaciones <br>
         los dias de  
          <strong>${fecha}</strong></br>
-          <a href="http://localhost:4200/confirmar-vacaciones/${idVacaciones}/Aceptado">
+          <a href="http://172.17.1.7:8096/confirmar-vacaciones/${idVacaciones}/Aceptado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
-          </a> <a href="http://localhost:4200/confirmar-vacaciones/${idVacaciones}/Rechazado">
+          </a> <a href="http://172.17.1.7:8096/confirmar-vacaciones/${idVacaciones}/Rechazado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px; min-height: 100px;max-height: 300px;background-color: rgba(194, 81, 81, 0.76);margin-top: 50px;margin-left: 50px;">DENEGAR</button>
           
           </a>` //html body
