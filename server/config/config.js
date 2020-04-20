@@ -1,15 +1,15 @@
 /* jshint esversion: 6 */
-process.env.PORT = process.env.PORT || 3000;
+process.env.PORT = 6300;
 
 // Entorno
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 if (process.env.NODE_ENV === 'dev') {
     //'mongodb://localhost:27017/COVPAS';
-    process.env.URLDB = 'mongodb://localhost:27017/COVPAS';
+    process.env.URLDB = 'mongodb+srv://COVPAS:UsQiphJPPEiIQij5@cluster0-fh2p2.mongodb.net/COVPAS?retryWrites=true&w=majority';
 
 } else {
-    process.env.URLDB = 'mongodb://172.17.1.7:27037/COVPAS';
+    process.env.URLDB = 'mongodb+srv://COVPAS:UsQiphJPPEiIQij5@cluster0-fh2p2.mongodb.net/COVPAS?retryWrites=true&w=majority';
 }
 
 
