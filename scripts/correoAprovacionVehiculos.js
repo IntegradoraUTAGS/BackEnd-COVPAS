@@ -20,9 +20,9 @@ const nodemailer = require('nodemailer');
          <strong>De: ${destino[0].De} A: ${destino[0].A}</strong> sale 
          <strong>${salida}</strong> y regresa
           <strong>${regreso || ''}</strong><br>
-          <a href="http://localhost:4200/confirmar-pase-salida-vehiculo/${idPaseSalida}/Aceptado">
+          <a href="http://172.17.1.7:8096/confirmar-pase-salida-vehiculo/${idPaseSalida}/Aceptado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px;min-height: 100px; max-height: 300px;background-color: rgba(81, 194, 81, 0.76);margin-top: 50px;">ACEPTAR</button>
-          </a> <a href="http://localhost:4200/confirmar-pase-salida-vehiculo/${idPaseSalida}/Rechazado">
+          </a> <a href="http://172.17.1.7:8096/confirmar-pase-salida-vehiculo/${idPaseSalida}/Rechazado">
           <button style="font-size: 20pt;min-width: 200px;max-width: 500px; min-height: 100px;max-height: 300px;background-color: rgba(194, 81, 81, 0.76);margin-top: 50px;margin-left: 50px;">DENEGAR</button>
           
           </a>` //html body
