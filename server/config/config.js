@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-process.env.PORT = 6300;
+process.env.PORT = process.env.PORT || 3000;
 
 // Entorno
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
