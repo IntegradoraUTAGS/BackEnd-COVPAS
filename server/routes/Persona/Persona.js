@@ -84,7 +84,7 @@ app.post('/registrar',  (req, res) => {
 // actualizamos el usuario por id tomando los campos que se vayan a actualizar y utilizando 
 // la funcion pick para obtener el objeto completo o solo ciertos campos
 app.put('/actualizar/:id', (req, res) => {
-    let body = _.pick(req.body, ['strNombre','strTipoEmpleado','numDiasDisponibles']);
+    let body = _.pick(req.body, ['strNombre','strTipoEmpleado','numDiasDisponibles','strRole']);
     Persona.findByIdAndUpdate(req.params.id, body, (err, resp) => {
         if(err) {
             return res.status(400).json({

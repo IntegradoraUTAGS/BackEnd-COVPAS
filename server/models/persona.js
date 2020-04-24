@@ -32,6 +32,14 @@ let personaSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'direccion'
     },
+    imgLicencia: {
+        type: String,
+        default: 'img.jpg' 
+    },
+    strRole:{
+        type: String,
+        default: 'User'
+    },
     active: {
         type: Boolean,
         default: true

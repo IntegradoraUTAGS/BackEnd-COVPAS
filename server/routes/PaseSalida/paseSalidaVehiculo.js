@@ -39,21 +39,6 @@ app.get('/obtener/:numNoEmpleado', (req, res) => {
        console.log(resp)
        Salidas.findOne({idPersona: resp._id,strEstatus: "Aceptado"}).then((resp) => {
            console.log(resp);
-           SalidaVehiculo.findOne({idPaseSalida: resp._id})
-           .populate('idPaseSalida')
-        .populate('idVehiculo')
-        .populate('idAutoriza1')
-        .populate('idAutoriza2')
-        .populate('idAutoriza3')
-        .populate('idAutoriza4').then((resp) => {
-               console.log(resp);
-               return res.status(200).json({
-                   ok: true,
-                   cont: resp
-               });
-           }).catch((err)=>{
-               console.log(err);
-           });
        }).catch((err) => {
            console.log(err)
        });

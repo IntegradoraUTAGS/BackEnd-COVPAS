@@ -7,7 +7,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 if (process.env.NODE_ENV === 'dev') {
     //'mongodb://localhost:27017/COVPAS';
     process.env.URLDB = 'mongodb+srv://COVPAS:UsQiphJPPEiIQij5@cluster0-fh2p2.mongodb.net/COVPAS?retryWrites=true&w=majority';
-
 } else {
     process.env.URLDB = 'mongodb+srv://COVPAS:UsQiphJPPEiIQij5@cluster0-fh2p2.mongodb.net/COVPAS?retryWrites=true&w=majority';
 }

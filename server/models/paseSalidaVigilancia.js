@@ -6,44 +6,39 @@ const Pase = require('./persona');
 let schema = mongoose.Schema;
 
 let PaseVigilanciaSchema = new schema({
-    paseSalida:{
-        type: schema.Types.ObjectId,
-        ref:'Pase'
-    },
-    observacion:{
-        type: String
-    },
-    nombreReviso:{
-        type:String,
-        required:[true,'Ingrese el nombre de quen reviso el pase de salida']
-    },
-    gasolinaSalida:{
-        type:String,
-        required:[true,'Ingrese la gasolina del vehiculo']
-    },
-    kilometrosSalida:{
-        type:Number,
-        required:[true,'Ingrese los kilometros del vehiculo']
-    },
-    gasolinaRegreso:{
-        type:String,
-        required:[true,'Ingrese la gasolina del vehiculo'],
-        default:'En proeso'
-    },
-    kilometrosRegreso:{
-        type:Number,
-        required:[true,'Ingrese los kilometros del vehiculo'],
-        default:0
-    },
-    estatus:{
-        type:String,
-        default:'En proceso'
-    }
-    
+   idPaseSalida: {
+       type: schema.Types.ObjectId,
+       ref: 'Pase'
+   },
+   idPersona: {
+       type: schema.Types.ObjectId,
+       ref: 'Persoa'
+   },
+   dteHoraSalidaPase: {
+       type: String
+   },
+   dteHoraSalidaViglancia: {
+       type: String
+   },
+   dteHoraRegresoPase: {
+       type: String
+   },
+   dteHoraRegresoViglancia: {
+       type: String
+   },
+   nivelGasolinaSalida: {
+       type: String
+   },
+   nivelGasolinaRegreso: {
+       type: String
+   },
+   kmSaida: {
+       type: String
+   },
+   kmRegreso: {
+       type: String
+   }
    
-
-
-
 });
 
 PaseVigilanciaSchema.plugin(uniquevalidator, {

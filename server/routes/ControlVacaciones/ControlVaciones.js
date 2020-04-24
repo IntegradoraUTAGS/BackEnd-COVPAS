@@ -39,13 +39,17 @@ app.post("/registrar", (req, res) => {
 
     const vacaciones = new controlVacaciones({
         idPersona: req.body.idPersona,
-        idAutoriza: req.body.idAutoriza
+        idAutoriza: req.body.idAutoriza,
+        adteFechas: req.body.adteFechas
     });
     
     new controlVacaciones(vacaciones).save().then((resp) => {
         res.json({resp});
     }).catch((err) => {
-        res.json({err});
+        res.json({
+            ok: false,
+            msg: 'Ocurio un error verifica e intenta de nuevo',
+            err});
     });
 });
 

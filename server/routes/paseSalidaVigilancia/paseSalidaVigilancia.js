@@ -1,6 +1,8 @@
 /* jshint esversion: 6 */
-const PaseSalidaVigilancia = require('../../models/paseSalidaVigilancia');
-const PaseSalida = require('../../models/paseSalidaVehiculo');
+const vigilancia = require('../../models/paseSalidaVigilancia');
+const PaseSalida = require('../../models/paseSalida');
+const Persona = require('../../models/persona');
+const PaseSalidaVehiculo = require('../../models/paseSalidaVehiculo');
 const _ = require('underscore');
 
 const express = require('express');
@@ -8,7 +10,7 @@ const express = require('express');
 const app = express();
 
 app.get('/obtener', (req, res) => {
-    PaseSalidaVigilancia.find().then((resp) => {
+    vigilancia.find().then((resp) => {
         return res.status(200).json({
             ok: true,
             msg: 'Pases de salida de vigilancia',
@@ -23,38 +25,34 @@ app.get('/obtener', (req, res) => {
     });
 });
 
-app.post('/registrar', (req, res) => {
-    let body = req.body;
+app.post('/registrar',(req,res) => {
+    const vigilanciaBody = {
+        idPaseSalida: req.body.idPaseSalida,
+        idPersona: req.body.idPersona,
+        dteHoraSalidaPase: req.body.dteHoraSalidaPase,
+        dteHoraSalidaViglancia: req.body.dteHoraSalidaViglancia,
+        dteHoraRegresoPase: req.body.dteHoraRegresoPase,
+        dteHoraRegresoViglancia: req.body.dteHoraRegresoViglancia,
+        nivelGasolinaSalida: req.body.nivelGasolinaSalida,
+        nivelGasolinaRegreso: req.body.nivelGasolinaRegreso,
+        kmSaida: req.body.kmSaida,
+        kmRegreso: req.body.kmRegreso
+    }
 
-    const paseSalidaVigilancia = new PaseSalidaVigilancia({
-       paseSalida : body.paseSalida,
-       observacion: body.observacion,
-       nombreReviso:body.nombreReviso,
-       kilometrosSalida:body.kilometrosSalida,
-       gasolinaSalida:body.gasolinaSalida
-        
-    });
-       new PaseSalidaVigilancia(paseSalidaVigilancia).save().then((resp) => {
-            
-        PaseSalida.findByIdAndUpdate({_id:paseSalidaVigilancia.paseSalida},{strEstatus:'false'})
-        .then((resp)=>{
-            
-        });
-
-        return res.status(200).json({
-            ok: true,
-            msg: 'Pase de salida revisado con exito',
-            cont: resp
-        }); 
-        }).catch((err) => {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Oh oh ocurrio un error al registrar un usuario',
-                cont: err
-            });
-        });
-    
-    })
+   new vigilancia(vigilanciaBody).save().then((resp)=> {
+       return res.status(200).json({
+           ok: true,
+           msg: 'Finalizado pase de salida con exito',
+           cont: resp
+       });
+   }).catch((err) => {
+       return res.status(400).json({
+           ok: false,
+           msg: 'Ocurrio un error intenta de nuevo',
+           err
+       });
+   });
+});
    
     app.put('/finalizar/:id', (req, res) => {
         let id = req.params.id
@@ -77,6 +75,35 @@ app.post('/registrar', (req, res) => {
         
         })
 
+app.get('/obtener/paseSalida/:num',(req,res) => {
+    Persona.findOne({numNoEmpleado: req.params.num}).then((resp) =>{
+        console.log(resp._id);
+        PaseSalida.findOne({idPersona:resp._id,strEstatus:"Aceptado"}).then((paseSalida) =>{
+            console.log(paseSalida._id);
+            PaseSalidaVehiculo.findOne({idPaseSalida: paseSalida._id, strEstatus: "En progreso"}).populate('idPaseSalida').then((resp)=>{
+                if(resp == null){
+                    return res.status(200).json({
+                        ok: true,
+                        msg: 'Solo se obtuvo pase de salida sin vehiculo',
+                        cont: paseSalida
+                    });
+                } else {
+                    return res.status(200).json({
+                        ok:true,
+                        msg: 'Se obtuvo pase de salida con vehiculo',
+                        cont: resp
+                    });
+                }
+            }).catch((err) => {
+                
+            })
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }).catch((err)=>{
+        console.log(err);
+    });
+})
 
 
 

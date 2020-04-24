@@ -16,7 +16,9 @@ let solicitudVacaciones=new Schema({
         ref: 'Persona',
         required: [true, 'persona que autoriza es requerida']
     },
-    adteFechas: [],
+    adteFechas: {
+        type: Array
+    },
     strEstatus: {
         type: String,
         default: 'En Progreso'
