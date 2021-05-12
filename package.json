@@ -28,7 +28,7 @@
     "mongoose": "^5.9.3",
     "mongoose-hidden": "^1.8.1",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemailer": "^6.4.3",
+    "nodemailer": "^6.4.16",
     "nodemon": "^2.0.2",
     "underscore": "^1.9.2",
     "uniqid": "^5.2.0"
